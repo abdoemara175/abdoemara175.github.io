@@ -2,7 +2,7 @@
 const titles = [
   'FCI-ZU Student',
   'UI/UX Designer',
-  'Photography',
+  'Photographer',
   'Graphic Designer'
 ];
 
@@ -10,12 +10,19 @@ let titleIndex = 0;
 const heroTitle = document.getElementById('heroTitle');
 
 function changeTitle() {
+  // Slide out to right
+  heroTitle.style.transform = 'translateX(100%)';
   heroTitle.style.opacity = '0';
   
   setTimeout(() => {
     titleIndex = (titleIndex + 1) % titles.length;
     heroTitle.textContent = titles[titleIndex];
-    heroTitle.style.opacity = '1';
+    
+    // Slide in from left
+    setTimeout(() => {
+      heroTitle.style.transform = 'translateX(0)';
+      heroTitle.style.opacity = '1';
+    }, 50);
   }, 500);
 }
 
