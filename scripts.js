@@ -54,8 +54,7 @@ function updateNavbar() {
     const sectionName = section.getAttribute('data-section');
 
     // Check if section has been passed (user scrolled past its midpoint)
-    if (scrollPosition > (sectionTop + sectionBottom) / 2) {
-      if (!passedSections.has(sectionName)) {
+    if (scrollPosition > (sectionTop + sectionBottom) / 2 || (scrollPosition + window.innerHeight >= document.documentElement.scrollHeight - 100)) {      if (!passedSections.has(sectionName)) {
         passedSections.add(sectionName);
         addNavSection(sectionName, section.id);
       }
