@@ -145,3 +145,46 @@ window.addEventListener('resize', () => {
   revealSections();
   animateSkills();
 });
+
+                        // ========== SHARE PORTFOLIO FUNCTION ==========
+function sharePortfolio() {
+      if (navigator.share) {
+                navigator.share({
+                              title: 'Abdelrahman Emara - Portfolio',
+                              text: 'Check out my portfolio!',
+                              url: window.location.href
+                                        }).catch((error) => console.log('Error sharing:', error));
+            } else {
+                // Fallback: copy URL to clipboard
+                navigator.clipboard.writeText(window.location.href);
+                alert('Portfolio link copied to clipboard!');
+            }
+  }
+
+// ========== SWIPE TEXT ANIMATION ==========
+const swipeTexts = [
+      'FCI-ZU Student',
+      'UI/UX Designer',
+      'Photographer',
+      'Graphic Designer'
+  ];
+
+let swipeIndex = 0;
+
+function animateSwipeText() {
+      const swipeTextEl = document.getElementById('swipeText');
+      if (swipeTextEl) {
+                swipeTextEl.style.opacity = '0';
+                swipeTextEl.style.transform = 'translateX(-20px)';
+
+                setTimeout(() => {
+                              swipeIndex = (swipeIndex + 1) % swipeTexts.length;
+                              swipeTextEl.textContent = swipeTexts[swipeIndex];
+                              swipeTextEl.style.opacity = '1';
+                              swipeTextEl.style.transform = 'translateX(0)';
+                          }, 500);
+            }
+  }
+
+// Start swipe animation
+setInterval(animateSwipeText, 3000);
