@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Abdelrahman Emara - UI/UX Designer, FCI-ZU Student, Photography & Graphic Design">
+    <title>Abdelrahman Emara - Personal CV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0B3550;
+            --background: #DBB096;
+            --text: #484F2B;
+            --secondary: #6B8B9F;
+            --light-bg: #f5e8dc;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Sticky Navbar */
+        .navbar {
+            position: fixed;
+            top: -100px;
+            left: 0;
+            right: 0;
+            background-color: var(--primary);
+            padding: 15px 50px;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+            transition: top 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar.show {
+            top: 0;
+        }
+
+        .navbar img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .navbar h2 {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Header Section */
+        .header {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 50px 20px;
+            position: relative;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .subtitle-container {
+            height: 40px;
+            margin-bottom: 30px;
+        }
+
+        .subtitle {
+            color: var(--background);
+            font-size: 1.5rem;
+            opacity: 0;
+            position: absolute;
+            animation: fadeInOut 12s infinite;
+        }
+
+        .subtitle:nth-child(2) { animation-delay: 3s; }
+        .subtitle:nth-child(3) { animation-delay: 6s; }
+        .subtitle:nth-child(4) { animation-delay: 9s; }
+
+        @keyframes fadeInOut {
+            0%, 25% { opacity: 0; transform: translateY(20px); }
+            8.33%, 16.66% { opacity: 1; transform: translateY(0); }
+            25%, 100% { opacity: 0; transform: translateY(-20px); }
+        }
+
+        .about-text {
+            color: white;
+            max-width: 700px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 50px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section:nth-child(even) {
+            background-color: var(--background);
+        }
+
+        section:nth-child(odd) {
+            background-color: var(--light-bg);
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: var(--secondary);
+            margin: 15px auto;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .skill {
+            margin-bottom: 30px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .progress-bar {
+            background-color: #e0e0e0;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0;
+            transition: width 1.5s ease;
+        }
+
+        .skill.animate .progress {
+            width: var(--progress-width);
+        }
+
+        /* Education, Activities, Events */
+        .content-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .item {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--secondary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .item h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .item p {
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        .date {
+            color: var(--secondary);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact h2::after {
+            background-color: white;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 3rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.3);
+            color: var(--background);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .subtitle { font-size: 1.2rem; }
+            section { padding: 50px 20px; }
+            h2 { font-size: 2rem; }
+            .navbar { padding: 15px 20px; }
+            .navbar h2 { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navbar -->
+    <nav class="navbar" id="navbar">
+        <img src="Githubph-emara.jpg" alt="Abdelrahman Emara">
+        <h2>Abdelrahman Emara</h2>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="header" id="header">
+        <img src="Githubph-emara.jpg" alt="Abdelrahman Emara" class="profile-image">
+        <h1>Abdelrahman Emara</h1>
+        <div class="subtitle-container">
+            <div class="subtitle">FCI-ZU Student</div>
+            <div class="subtitle">UI/UX Designer</div>
+            <div class="subtitle">Photography</div>
+            <div class="subtitle">Graphic Designer</div>
+        </div>
+        <p class="about-text">
+            I'm Abdelrahman Emara, a student at FCI-ZU with creative hobbies like photography and graphic design. 
+            I'm developing my skills in UI/UX design. I aim to develop my skills in technology and design to create 
+            innovative digital solutions that make a positive impact on society.
+        </p>
+    </header>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-container">
+            <div class="skill" data-progress="75">
+                <div class="skill-name">
+                    <span>UI Design</span>
+                    <span>75%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="--progress-width: 75%"></div>
+                </div>
+            </div>
+            <div class="skill" data-progress="50">
+                <div class="skill-name">
+                    <span>UX Design</span>
+                    <span>50%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="--progress-width: 50%"></div>
+                </div>
+            </div>
+            <div class="skill" data-progress="80">
+                <div class="skill-name">
+                    <span>Photography</span>
+                    <span>80%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="--progress-width: 80%"></div>
+                </div>
+            </div>
+            <div class="skill" data-progress="80">
+                <div class="skill-name">
+                    <span>Graphic Design</span>
+                    <span>80%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="--progress-width: 80%"></div>
+                </div>
+            </div>
+            <div class="skill" data-progress="60">
+                <div class="skill-name">
+                    <span>Video Editing</span>
+                    <span>60%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="--progress-width: 60%"></div>
+                </div>
+            </div>
+            <div class="skill" data-progress="40">
+                <div class="skill-name">
+                    <span>Marketing</span>
+                    <span>40%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="--progress-width: 40%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2>Education</h2>
+        <div class="content-container">
+            <div class="item">
+                <h3>Faculty of Computers and Information - Zagazig University</h3>
+                <p>Data Science (DS) Program</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Students Activities Section -->
+    <section id="activities">
+        <h2>Students Activities</h2>
+        <div class="content-container">
+            <div class="item">
+                <p class="date">2025 - Now</p>
+                <h3>Google Developer Groups on Campus</h3>
+                <p>Community Head UI/UX "MTI" | Core Team UI/UX "Zagazig" | Core Team UI/UX "Obour"</p>
+            </div>
+            <div class="item">
+                <h3>Zag Eng Family</h3>
+                <p>Co-lead UI/UX</p>
+            </div>
+            <div class="item">
+                <p class="date">2024-2025</p>
+                <h3>GDG MTI</h3>
+                <p>Head of Photography | Vice Head of Graphic Design</p>
+            </div>
+            <div class="item">
+                <p class="date">2025</p>
+                <h3>Zag Eng Family</h3>
+                <p>Winner of the Deep Dive Camp 2.0</p>
+            </div>
+            <div class="item">
+                <p class="date">2025</p>
+                <h3>Gen Z</h3>
+                <p>Volunteered as UI/UX Instructor at "Gen Z" camp</p>
+            </div>
+            <div class="item">
+                <p class="date">2024-2025</p>
+                <h3>MSP Al-Azhar University</h3>
+                <p>UI/UX Member | Volunteered as UI/UX Instructor at "أثر" camp</p>
+            </div>
+            <div class="item">
+                <p class="date">2023-2024</p>
+                <h3>GDSC MTI</h3>
+                <p>UI/UX Member | Marketing Member</p>
+            </div>
+            <div class="item">
+                <p class="date">2022-2023</p>
+                <h3>EGI ZU</h3>
+                <p>UI/UX Member | Marketing Member | Media Member</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events">
+        <h2>Events</h2>
+        <div class="content-container">
+            <div class="item">
+                <h3>DevFest 2024 - GDG Cairo</h3>
+                <p>Organiser</p>
+            </div>
+            <div class="item">
+                <h3>TeqFest 2024 - GDSC MTI</h3>
+                <p>Organiser</p>
+            </div>
+            <div class="item">
+                <h3>The Matrix 2024 - GDSC MTI</h3>
+                <p>Organiser</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Get In Touch</h2>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/abdelrahman-emara-" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:abdoemara175@gmail.com" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://wa.me/201061971759" target="_blank" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=100009207175958" target="_blank" aria-label="Facebook">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://linktr.ee/abdoemara175" target="_blank" aria-label="Linktree">
+                <i class="fas fa-link"></i>
+            </a>
+        </div>
+    </section>
+
+    <script>
+        // Sticky Navbar
+        const navbar = document.getElementById('navbar');
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > header.offsetHeight - 100) {
+                navbar.classList.add('show');
+            } else {
+                navbar.classList.remove('show');
+            }
+        });
+
+        // Fade-in Sections on Scroll
+        const sections = document.querySelectorAll('section');
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Animate Skills Progress Bars
+        const skillsSection = document.getElementById('skills');
+        const skills = document.querySelectorAll('.skill');
+        let skillsAnimated = false;
+
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !skillsAnimated) {
+                    skills.forEach(skill => {
+                        skill.classList.add('animate');
+                    });
+                    skillsAnimated = true;
+                }
+            });
+        }, { threshold: 0.5 });
+
+        skillsObserver.observe(skillsSection);
+    </script>
+
+</body>
+</html>
