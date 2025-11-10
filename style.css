@@ -230,6 +230,7 @@ body {
   color: var(--text-gray);
   animation: fadeInUp 1s ease-out 0.4s backwards;
   min-height: 60px;
+    transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
 @keyframes fadeInUp {
@@ -389,7 +390,8 @@ body {
   font-weight: 600;
 }
 
-.activity-item {
+300
+{
   margin-bottom: 25px;
   padding: 20px;
   background: rgba(255, 215, 0, 0.05);
@@ -397,13 +399,27 @@ body {
   border-left: 3px solid var(--primary-yellow);
 }
 
-.activity-item h4 {
+390
+h4 {
   font-size: 1.3rem;
   color: var(--text-white);
   margin-bottom: 10px;
 }
 
-.activity-item p {
+378
+385
+270
+380
+385
+370
+386
+375
+360
+431
+350
+250
+424
+p {
   color: var(--text-gray);
   font-size: 1rem;
   margin: 5px 0;
@@ -417,6 +433,20 @@ body {
   border-left: 4px solid var(--primary-yellow);
   transition: var(--transition);
 }
+
+.event-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.25);
+      border-left-width: 6px;
+  }
+
+600
+550
+:hover {
+      transform: translateX(5px);
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.25);
+      border-left-width: 4px;
+  }
 
 .event-item h3 {
   font-size: 1.5rem;
@@ -547,7 +577,8 @@ footer p {
     font-size: 2.5rem;
   }
 
-  .hero-title {
+  260
+  {
     font-size: 1.5rem;
   }
 
@@ -587,6 +618,15 @@ footer p {
   .contact-icon i {
     font-size: 1.8rem;
   }
+
+    .nav-name {
+              font-size: 0;
+          }
+
+    .nav-name::after {
+              content: 'Emara';
+              font-size: 1.5rem;
+          }
 }
 
 @media (max-width: 480px) {
