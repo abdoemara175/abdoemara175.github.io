@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdelrahman Emara</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* ====== General ====== */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #F4E5DC;
+  margin: 0;
+  padding: 0;
+  color: #484F2B;
+  line-height: 1.6;
+}
+
+section {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+h2 {
+  text-align: center;
+  color: #0B3550;
+  margin-bottom: 25px;
+}
+
+/* ====== Header ====== */
+.header {
+  text-align: center;
+  padding: 80px 20px 50px 20px;
+}
+
+.header .avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.header h1 {
+  margin: 0;
+  color: #0B3550;
+  font-size: 32px;
+}
+
+.header .subtitle {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.slider-text {
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* ====== Navbar Sticky ====== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 5px 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transform: translateY(-100%);
+  transition: transform 0.4s ease;
+  z-index: 1000;
+}
+
+.navbar.visible {
+  transform: translateY(0);
+}
+
+.navbar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.navbar span {
+  font-weight: bold;
+  color: #0B3550;
+}
+
+/* ====== Skills ====== */
+.skills .skill {
+  margin-bottom: 15px;
+}
+
+.skill-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.skill-bar {
+  background: #e0e0e0;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 20px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0;
+  background-color: #0B3550;
+  border-radius: 20px;
+  transition: width 1.2s ease;
+}
+
+/* ====== Contact Links ====== */
+.contact-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.contact-links a {
+  text-decoration: none;
+}
+
+.contact-links i {
+  font-size: 28px;
+  color: #0B3550;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.contact-links i:hover {
+  transform: scale(1.3);
+  color: #6B8B9F;
+}
+
+/* ====== Responsive ====== */
+@media screen and (max-width: 768px) {
+  .header .avatar {
+    width: 120px;
+    height: 120px;
+  }
+
+  .contact-links i {
+    font-size: 24px;
+  }
+
+  section {
+    padding: 20px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+  <img src="Githubph-emara.jpg" alt="Abdelrahman Emara">
+  <span>Abdelrahman Emara</span>
+</div>
+
+<!-- Header -->
+<div class="header">
+  <img src="Githubph-emara.jpg" alt="Abdelrahman Emara" class="avatar">
+  <h1>Abdelrahman Emara</h1>
+  <p class="subtitle"><span class="slider-text">FCI-ZU Student</span></p>
+  <p>I'm Abdelrahman Emara, a student at FCI-ZU with creative hobbies like photography and graphic design. I'm developing my skills in UI/UX design. I aim to develop my skills in technology and design to create innovative digital solutions that make a positive impact on society.</p>
+</div>
+
+<!-- Skills -->
+<section class="skills">
+  <h2>Skills</h2>
+  <div class="skill">
+    <div class="skill-name">UI</div>
+    <div class="skill-bar"><div class="progress-bar" data-width="75%"></div></div>
+  </div>
+  <div class="skill">
+    <div class="skill-name">UX</div>
+    <div class="skill-bar"><div class="progress-bar" data-width="50%"></div></div>
+  </div>
+  <div class="skill">
+    <div class="skill-name">Photography</div>
+    <div class="skill-bar"><div class="progress-bar" data-width="80%"></div></div>
+  </div>
+  <div class="skill">
+    <div class="skill-name">Graphic Design</div>
+    <div class="skill-bar"><div class="progress-bar" data-width="80%"></div></div>
+  </div>
+  <div class="skill">
+    <div class="skill-name">Video Editing</div>
+    <div class="skill-bar"><div class="progress-bar" data-width="60%"></div></div>
+  </div>
+  <div class="skill">
+    <div class="skill-name">Marketing</div>
+    <div class="skill-bar"><div class="progress-bar" data-width="40%"></div></div>
+  </div>
+</section>
+
+<!-- Education -->
+<section class="education">
+  <h2>Education</h2>
+  <p>Faculty of Computers and Information - Zagazig University "DS"</p>
+</section>
+
+<!-- Students Activities -->
+<section class="activities">
+  <h2>Students Activities</h2>
+  <ul>
+    <li>2025 - Now | Google Developer Groups on Campus: Community Head Ui/Ux "MTI", Core Team Ui/Ux "Zagazig", Core Team Ui/Ux "Obour"</li>
+    <li>Zag Eng Family: Co lead Ui/Ux</li>
+    <li>GDG MTI 2024-2025: Head of Photography, Vice Head of Graphic Design</li>
+    <li>Zag Eng Family 2025: Winner of the Deep Dive Camp 2.0</li>
+    <li>Gen Z 2025: Volunteered as Ui/Ux Instructor at "Gen Z" camp</li>
+    <li>MSP Al-Azhar University 2024-2025: UI/UX Member, Volunteered as Ui/Ux Instructor at "أثر" camp</li>
+    <li>GDSC MTI 2023-2024: UI/UX Member, Marketing Member</li>
+    <li>EGI ZU 2022-2023: UI/UX Member, Marketing Member, Media Member</li>
+  </ul>
+</section>
+
+<!-- Events -->
+<section class="events">
+  <h2>Events</h2>
+  <ul>
+    <li>Organiser: DevFest 2024 - GDG Cairo</li>
+    <li>Organiser: TeqFest 2024 - GDSC MTI</li>
+    <li>Organiser: The Matrix 2024 - GDSC MTI</li>
+  </ul>
+</section>
+
+<!-- Contact -->
+<section class="contact">
+  <h2>Contact</h2>
+  <div class="contact-links">
+    <a href="https://www.linkedin.com/in/abdoemara175" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="mailto:abdoemara.175@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+    <a href="https://wa.me/201022382461" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://www.facebook.com/abdoemara.1750" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://linktr.ee/abdelrahmanemara" target="_blank"><i class="fas fa-link"></i></a>
+  </div>
+</section>
+
+<script>
+// ====== Fade-in Sections ======
+window.addEventListener('scroll', () => {
+  document.querySelectorAll('section').forEach(section => {
+    const top = section.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    if (top < windowHeight - 100) section.classList.add('visible');
+  });
+});
+
+// ====== Slider Text under Name ======
+const texts = ["FCI-ZU Student", "UI/UX Designer", "Photography", "Graphic Designer"];
+let index = 0;
+const slider = document.querySelector(".slider-text");
+
+function showNextText() {
+  slider.style.opacity = 0;
+  setTimeout(() => {
+    slider.textContent = texts[index];
+    slider.style.opacity = 1;
+    index = (index + 1) % texts.length;
+  }, 500);
+}
+setInterval(showNextText, 3000);
+
+// ====== Progress Bar Animation ======
+const skillsSection = document.querySelector('.skills');
+const progressBars = document.querySelectorAll('.progress-bar');
+
+window.addEventListener('scroll', () => {
+  const top = skillsSection.getBoundingClientRect().top;
+  if (top < window.innerHeight - 50) {
+    progressBars.forEach(bar => {
+      bar.style.width = bar.getAttribute('data-width');
+    });
+  }
+});
+
+// ====== Sticky Navbar ======
+const navbar = document.querySelector('.navbar');
+const headerHeight = document.querySelector('.header').offsetHeight;
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > headerHeight) {
+    navbar.classList.add('visible');
+  } else {
+    navbar.classList.remove('visible');
+  }
+});
+</script>
+
+</body>
+</html>
