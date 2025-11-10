@@ -435,3 +435,39 @@
     <section class="contact" id="contact">
         <h2>Contact Me</h2>
             <a href="https://www.linkedin.com/in/abdoemara175" target="_blank" aria-label="LinkedIn">
+                    </section>
+
+            <script>
+                        // Intersection Observer for sections animation
+                        const sections = document.querySelectorAll('section');
+
+                        const observer = new IntersectionObserver((entries) => {
+                                        entries.forEach(entry => {
+                                                            if (entry.isIntersecting) {
+                                                                                    entry.target.classList.add('visible');
+                                                                                    // Animate skills
+                                                                                    if (entry.target.id === 'skills') {
+                                                                                                                document.querySelectorAll('.skill').forEach(skill => {
+                                                                                                                                                skill.classList.add('animate');
+                                                                                                                                            });
+                                                                                                            }
+                                                                                }
+                                                        });
+                                    }, { threshold: 0.2 });
+
+                        sections.forEach(section => observer.observe(section));
+
+                        // Sticky Navbar
+                        const navbar = document.getElementById('navbar');
+                        const header = document.getElementById('header');
+
+                        window.addEventListener('scroll', () => {
+                                        if (window.scrollY > header.offsetHeight - 100) {
+                                                            navbar.classList.add('show');
+                                                        } else {
+                                                            navbar.classList.remove('show');
+                                                        }
+                                    });
+                    </script>
+        </body>
+    </html>
