@@ -91,14 +91,13 @@
         }
 
         .subtitle-container {
-            height: 40px;
-            margin-bottom: 30px;
+            height: 60px;
         }
 
         .subtitle {
             color: var(--background);
-            font-size: 1.5rem;
-            opacity: 0;
+            font-size: 2rem;
+                        opacity: 0;
             position: absolute;
             animation: fadeInOut 12s infinite;
         }
@@ -293,7 +292,7 @@
             <div class="subtitle">Graphic Designer</div>
         </div>
         <p class="about-text">
-            I'm Abdelrahman Emara, a student at FCI-ZU with creative hobbies like photography and graphic design. 
+            I'm Abdelrahman Emara, a Photographer at FCI-ZU with creative hobbies like photography and graphic design. 
             I'm developing my skills in UI/UX design. I aim to develop my skills in technology and design to create 
             innovative digital solutions that make a positive impact on society.
         </p>
@@ -365,12 +364,10 @@
         <h2>Education</h2>
         <div class="content-container">
             <div class="item">
-                <h3>Faculty of Computers and Information - Zagazig University</h3>
-                <p>Data Science (DS) Program</p>
+                <h3>Zagazig University</h3>
+                                <p>Faculty of Computers and Information<br>Decision Support (DS) Program</p><p>Data Science (DS) Program</p>
             </div>
         </div>
-    </section>
-
     <!-- Students Activities Section -->
     <section id="activities">
         <h2>Students Activities</h2>
@@ -440,75 +437,4 @@
     <section class="contact" id="contact">
         <h2>Get In Touch</h2>
         <div class="social-links">
-            <a href="https://www.linkedin.com/in/abdelrahman-emara-" target="_blank" aria-label="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="mailto:abdoemara175@gmail.com" aria-label="Email">
-                <i class="fas fa-envelope"></i>
-            </a>
-            <a href="https://wa.me/201061971759" target="_blank" aria-label="WhatsApp">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="https://www.facebook.com/profile.php?id=100009207175958" target="_blank" aria-label="Facebook">
-                <i class="fab fa-facebook"></i>
-            </a>
-            <a href="https://linktr.ee/abdoemara175" target="_blank" aria-label="Linktree">
-                <i class="fas fa-link"></i>
-            </a>
-        </div>
-    </section>
-
-    <script>
-        // Sticky Navbar
-        const navbar = document.getElementById('navbar');
-        const header = document.getElementById('header');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > header.offsetHeight - 100) {
-                navbar.classList.add('show');
-            } else {
-                navbar.classList.remove('show');
-            }
-        });
-
-        // Fade-in Sections on Scroll
-        const sections = document.querySelectorAll('section');
-        
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-
-        // Animate Skills Progress Bars
-        const skillsSection = document.getElementById('skills');
-        const skills = document.querySelectorAll('.skill');
-        let skillsAnimated = false;
-
-        const skillsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !skillsAnimated) {
-                    skills.forEach(skill => {
-                        skill.classList.add('animate');
-                    });
-                    skillsAnimated = true;
-                }
-            });
-        }, { threshold: 0.5 });
-
-        skillsObserver.observe(skillsSection);
-    </script>
-
-</body>
-</html>
+            <a href="https://www.linkedin.com/in/abdoemara175" target="_blank" aria-label="LinkedIn">
