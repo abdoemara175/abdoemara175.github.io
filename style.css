@@ -31,7 +31,7 @@ body {
 
 .section {
   min-height: 100vh;
-  padding: 100px 0;
+  padding: 60px 0;
   opacity: 0;
   transform: translateY(50px);
   transition: var(--transition);
