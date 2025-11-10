@@ -379,7 +379,7 @@ body {
 .activity-group:hover,
 .course-group:hover,
 .event-item:hover {
-  transform: translateX(10px);
+  transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(255, 215, 0, 0.15);
 }
 
@@ -435,7 +435,7 @@ p {
 }
 
 .event-item:hover {
-      transform: translateX(5px);
+      transform: translateY(-5px);
       box-shadow: 0 5px 15px rgba(255, 215, 0, 0.25);
       border-left-width: 6px;
   }
@@ -443,7 +443,7 @@ p {
 600
 550
 :hover {
-      transform: translateX(5px);
+      transform: translateY(-5px);
       box-shadow: 0 5px 15px rgba(255, 215, 0, 0.25);
       border-left-width: 4px;
   }
