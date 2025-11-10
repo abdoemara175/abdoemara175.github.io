@@ -655,3 +655,46 @@ footer p {
     font-size: 1rem;
   }
 }
+
+/* ========== SHARE BUTTON ========== */
+.share-btn {
+      position: fixed;
+      top: 100px;
+      right: 30px;
+      background: var(--primary-yellow);
+      color: var(--primary-black);
+      border: none;
+      padding: 12px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+      transition: var(--transition);
+      z-index: 1000;
+  }
+
+.share-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+  }
+
+/* ========== SWIPE TEXT ANIMATION ========== */
+.swipe-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+  }
+
+.swipe-line {
+      color: var(--primary-yellow);
+      font-size: 2rem;
+      font-weight: bold;
+  }
+
+.swipe-text {
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      display: inline-block;
+  }
