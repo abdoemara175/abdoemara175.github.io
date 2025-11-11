@@ -6,8 +6,8 @@
 }
 
 :root {
-  --primary-black: #1a1a1a;
-  --secondary-black: #000000;
+  --primary-black: #000000;
+  --secondary-black: #1a1a1a;
   --primary-yellow: #FFD700;
   --accent-yellow: #FFD700;
   --text-white: #ffffff;
@@ -17,7 +17,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: var(--primary-black);
+  background-color: var(--secondary-black);
   color: var(--text-white);
   line-height: 1.6;
   overflow-x: hidden;
