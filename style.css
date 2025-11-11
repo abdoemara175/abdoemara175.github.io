@@ -288,8 +288,7 @@ body {
 
 .skill-item:hover {
   transform: translateY(-10px);
-  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
-}
+		box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);}
 
 .skill-header {
   display: flex;
@@ -591,9 +590,8 @@ footer p {
   }
 
   .hero-image {
-    width: 150px;
-    height: 150px;
-  }
+			width: 180px;
+			height: 180px;  }
 
   .nav-container {
     padding: 0 20px;
