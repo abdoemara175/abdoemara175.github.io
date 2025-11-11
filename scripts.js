@@ -2,7 +2,7 @@
 const titles = [
  'FCI-ZU Student',
  'UI/UX Designer',
- 'Photography',
+ 'Photographer',
  'Graphic Designer'
 ];
 
