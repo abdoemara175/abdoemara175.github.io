@@ -500,8 +500,7 @@ p {
   display: flex;
   justify-content: center;
   gap: 40px;
-  flex-wrap: wrap;
-}
+    flex-wrap: nowrap;}
 
 .contact-icon {
   width: 80px;
@@ -514,6 +513,11 @@ p {
   cursor: pointer;
   transition: var(--transition);
   position: relative;
+}
+
+.contact-icon.clicked {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
 }
 
 .contact-icon i {
@@ -592,6 +596,7 @@ footer p {
 
   .nav-sections {
     gap: 15px;
+        display: none;
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -670,8 +675,7 @@ footer p {
       display: flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-      transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.7);      transition: var(--transition);
       z-index: 1000;
   }
 
