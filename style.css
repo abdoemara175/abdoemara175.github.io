@@ -60,8 +60,9 @@ body {
  text-decoration: underline;
  text-decoration-color: var(--primary-yellow);
  text-decoration-thickness: 4px;
- text-underline-offset: 8px;}
-
+ text-underline-offset: 11px;
+ text-decoration-line: underline;
+ text-decoration-skip-ink: auto;
 
 /* ========== NAVBAR ========== */
 #navbar {
