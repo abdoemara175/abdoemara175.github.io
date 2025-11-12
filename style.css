@@ -19,6 +19,83 @@ html {
   --transition: all 0.5s ease-in-out;
 }
 
+/* ========== LIGHT MODE ========== */
+body.light-mode {
+ --primary-black: #ffffff;
+ --secondary-black: #f5f5f5;
+ --primary-yellow: #1a1a1a;
+ --accent-yellow: #333333;
+ --text-white: #1a1a1a;
+ --text-gray: #333333;
+}
+
+body.light-mode #navbar {
+ background: rgba(255, 255, 255, 0.95);
+ box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .nav-img {
+ border: 2px solid #1a1a1a;
+}
+
+body.light-mode .section-title::after {
+ background: #1a1a1a;
+}
+
+body.light-mode #hero {
+ background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+}
+
+body.light-mode #hero::before {
+ background: radial-gradient(circle, #1a1a1a 0%, transparent 70%);
+ opacity: 0.03;
+}
+
+body.light-mode .skill-bar {
+ background: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .education-item {
+ background: #ffffff;
+ border-left: 4px solid #1a1a1a;
+ box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .activity-group,
+body.light-mode .course-group {
+ background: #ffffff;
+ box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .activity-item {
+ background: #f5f5f5;
+ border-left: 3px solid #1a1a1a;
+}
+
+body.light-mode .event-item {
+ background: #ffffff;
+ border-left: 4px solid #1a1a1a;
+ box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .contact-icon {
+ background: #f5f5f5;
+ box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .contact-icon:hover {
+ background: #1a1a1a;
+}
+
+body.light-mode footer {
+ background: #f5f5f5;
+}
+
+body.light-mode .skill-item {
+ background: #ffffff;
+ box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   background-color: var(--secondary-black);
@@ -732,5 +809,46 @@ content: 'Abdelrahman Emara';              font-size: 1.5rem;
       transition: opacity 0.5s ease, transform 0.5s ease;
       display: inline-block;
   }
+
+/* ========== THEME TOGGLE BUTTON ========== */
+.theme-toggle {
+ position: fixed;
+ top: 20px;
+ right: 100px;
+ width: 50px;
+ height: 50px;
+ background: var(--primary-yellow);
+ border: none;
+ border-radius: 50%;
+ cursor: pointer;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-size: 1.5rem;
+ z-index: 1001;
+ transition: all 0.3s ease;
+ box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+ color: var(--primary-black);
+}
+
+.theme-toggle:hover {
+ transform: scale(1.1) rotate(20deg);
+ box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+}
+
+body.light-mode .theme-toggle {
+ background: #333333;
+ color: #ffffff;
+ box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.light-mode .theme-toggle:hover {
+ box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ========== SMOOTH TRANSITION ANIMATION ========== */
+body, body * {
+ transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease !important;
+}
 
 
