@@ -1,4 +1,7 @@
 /* ========== GLOBAL STYLES ========== */
+html {
+	 scroll-behavior: smooth;
+	}
 * {
   margin: 0;
   padding: 0;
@@ -8,6 +11,7 @@
 :root {
   --primary-black: #000000;
   --secondary-black: #1a1a1a;
+	
   --primary-yellow: #FFD700;
   --accent-yellow: #FFD700;
   --text-white: #ffffff;
