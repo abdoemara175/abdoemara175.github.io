@@ -133,4 +133,75 @@ function sharePortfolio() {
  navigator.clipboard.writeText(window.location.href);
  alert('Link copied to clipboard!');
  }
+
+  // ========== THEME TOGGLE FUNCTIONALITY ==========
+
+// Initialize theme from localStorage
+function initializeTheme() {
+ const savedTheme = localStorage.getItem('theme');
+ if (savedTheme === 'light') {
+  document.body.classList.add('light-mode');
+  updateThemeToggleIcon();
+ } else {
+  // Dark mode is default
+  document.body.classList.remove('light-mode');
+ }
+}
+
+// Create and add theme toggle button to navbar
+function createThemeToggle() {
+ const navContainer = document.querySelector('.nav-container');
+ const toggleBtn = document.createElement('button');
+ toggleBtn.className = 'theme-toggle';
+ toggleBtn.id = 'themeToggle';
+ toggleBtn.innerHTML = '🌙'; // Moon icon for dark mode
+ toggleBtn.setAttribute('aria-label', 'Toggle theme');
+ 
+ // Add click event
+ toggleBtn.addEventListener('click', toggleTheme);
+ 
+ navContainer.appendChild(toggleBtn);
+ updateThemeToggleIcon();
+}
+
+// Update icon based on current theme
+function updateThemeToggleIcon() {
+ const toggleBtn = document.getElementById('themeToggle');
+ if (toggleBtn) {
+  if (document.body.classList.contains('light-mode')) {
+   toggleBtn.innerHTML = '☀️'; // Sun icon for light mode
+  } else {
+   toggleBtn.innerHTML = '🌙'; // Moon icon for dark mode
+  }
+ }
+}
+
+// Toggle theme function
+function toggleTheme() {
+ document.body.classList.toggle('light-mode');
+ 
+ // Save preference to localStorage
+ const isLightMode = document.body.classList.contains('light-mode');
+ localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+ 
+ // Update icon
+ updateThemeToggleIcon();
+}
+
+// Initialize theme on page load
+window.addEventListener('DOMContentLoaded', () => {
+ initializeTheme();
+ createThemeToggle();
+});
+
+// Also initialize if DOM is already loaded
+if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', () => {
+  initializeTheme();
+  createThemeToggle();
+ });
+} else {
+ initializeTheme();
+ createThemeToggle();
+}
 }
