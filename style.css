@@ -61,7 +61,7 @@ body {
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 100px;
+  width: auto;
   height: 4px;
   background: var(--primary-yellow);
   border-radius: 2px;
