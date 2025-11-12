@@ -60,13 +60,12 @@ body {
   color: var(--primary-yellow);
   position: relative;
   animation: fadeInUp 1s ease-out;
-	 padding-bottom: 6px;
-}
+		padding-bottom: 0;}
 
 .section-title::after {
   content: '';
   position: absolute;
-  bottom: -10px.5;
+  bottom: -12.5;
  left: 5px;
  height: 4px;
  right: 5px;
