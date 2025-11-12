@@ -133,41 +133,4 @@ function sharePortfolio() {
  navigator.clipboard.writeText(window.location.href);
  alert('Link copied to clipboard!');
  }
-
- 
-// ========== THEME TOGGLE - SIMPLIFIED VERSION ==========
-
-// Initialize theme from localStorage
-const savedTheme = localStorage.getItem('theme') || 'dark';
-document.body.classList.toggle('light-mode', savedTheme === 'light');
-
-// Create and add theme toggle button directly to body
-function setupThemeToggle() {
-  const toggleBtn = document.createElement('button');
-  toggleBtn.className = 'theme-toggle';
-  toggleBtn.id = 'themeToggle';
-  toggleBtn.innerHTML = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
-  toggleBtn.setAttribute('aria-label', 'Toggle theme');
-  
-  toggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('light-mode');
-    const isLight = document.body.classList.contains('light-mode');
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    toggleBtn.innerHTML = isLight ? '☀️' : '🌙';
-  });
-  
-  document.body.appendChild(toggleBtn);
 }
-
-// Setup theme toggle when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', setupThemeToggle);
-} else {
-  setupThemeToggle();
-
-                             // Make all sections visible
-const sections = document.querySelectorAll('.section');
-sections.forEach(section => {
-  section.classList.add('visible');
- });
-});}
