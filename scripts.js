@@ -169,5 +169,5 @@ if (document.readyState === 'loading') {
 const sections = document.querySelectorAll('.section');
 sections.forEach(section => {
   section.classList.add('visible');
-});
-}
+ });
+});}
