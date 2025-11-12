@@ -63,7 +63,7 @@ body {
 .section-title::after {
   content: '';
   position: absolute;
-  bottom: -13px;
+  bottom: -11.5;
  left: 5px;
  height: 4px;
  right: 5px;
