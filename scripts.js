@@ -164,4 +164,10 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', setupThemeToggle);
 } else {
   setupThemeToggle();
+
+                             // Make all sections visible
+const sections = document.querySelectorAll('.section');
+sections.forEach(section => {
+  section.classList.add('visible');
+});
 }
