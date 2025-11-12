@@ -102,6 +102,13 @@ body {
 	 opacity: 0.8;
 	 transform: scale(1.05);
 	}
+a.nav-brand {
+	 text-decoration: none;
+	 color: inherit;
+	}
+.nav-img {
+	 display: block;
+	}
 
 620
 
