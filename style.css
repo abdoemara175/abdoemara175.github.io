@@ -54,11 +54,13 @@ body {
 	 display: flex;
  justify-content: center;
  align-items: center;
-  margin-bottom: 60px;
+	 margin-bottom: 30px;
+
+	
   color: var(--primary-yellow);
   position: relative;
   animation: fadeInUp 1s ease-out;
-	 padding-bottom: 17px;
+	 padding-bottom: 6px;
 }
 
 .section-title::after {
