@@ -57,15 +57,9 @@ body {
   color: var(--primary-yellow);
   position: relative;
   animation: fadeInUp 1s ease-out;
+	 border-bottom: 4px solid var(--primary-yellow);
 }
 
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
- width: 100%;  background: var(--primary-yellow);
-  border-radius: 2px;
-}
 
 /* ========== NAVBAR ========== */
 #navbar {
