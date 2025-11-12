@@ -134,44 +134,19 @@ function sharePortfolio() {
  alert('Link copied to clipboard!');
  }
 
- // ========== THEME TOGGLE ========== 
-const themeToggleBtn = document.getElementById('themeToggleBtn');
-const body = document.body;
 
-// Check if theme was previously saved in localStorage
+// ========== THEME TOGGLE ========== 
+const themeToggleBtn = document.getElementById('themeToggleBtn');
+
+// Load saved theme on page load
 const savedTheme = localStorage.getItem('theme') || 'dark';
 if (savedTheme === 'light') {
-  body.classList.add('light-mode');
-  updateThemeIcon('sun');
-} else {
-  body.classList.remove('light-mode');
-  updateThemeIcon('moon');
+  document.body.classList.add('light-mode');
 }
 
-// Theme toggle button click handler
+// Toggle theme on button click
 themeToggleBtn.addEventListener('click', () => {
-  // Toggle the light-mode class
-  body.classList.toggle('light-mode');
-  
-  // Determine current theme and save to localStorage
-  const isLightMode = body.classList.contains('light-mode');
-  const currentTheme = isLightMode ? 'light' : 'dark';
-  localStorage.setItem('theme', currentTheme);
-  
-  // Update icon
-  const iconName = isLightMode ? 'sun' : 'moon';
-  updateThemeIcon(iconName);
+  document.body.classList.toggle('light-mode');
+  const isLight = document.body.classList.contains('light-mode');
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
 });
-
-// Function to update the theme icon
-function updateThemeIcon(iconName) {
-  const icon = themeToggleBtn.querySelector('i');
-  if (iconName === 'sun') {
-    icon.classList.remove('fa-moon');
-    icon.classList.add('fa-sun');
-  } else {
-    icon.classList.remove('fa-sun');
-    icon.classList.add('fa-moon');
-  }
-}
-}
