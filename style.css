@@ -631,8 +631,7 @@ footer p {
           }
 
     .nav-name::after {
-              content: 'Emara';
-              font-size: 1.5rem;
+content: 'Abdelrahman Emara';              font-size: 1.5rem;
           }
 }
 
