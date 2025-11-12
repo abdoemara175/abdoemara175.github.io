@@ -57,18 +57,16 @@ body {
   color: var(--primary-yellow);
   position: relative;
   animation: fadeInUp 1s ease-out;
- padding-bottom: 13px;
-
-	.section-title::after {
- content: '';
- position: absolute;
- bottom: -13px;
- left: 5px;
- right: 5px;
- height: 4px;
- background: var(--primary-yellow);
- border-radius: 2px;
 }
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+ width: 100%;  background: var(--primary-yellow);
+  border-radius: 2px;
+}
+
 /* ========== NAVBAR ========== */
 #navbar {
   position: fixed;
