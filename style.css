@@ -63,8 +63,7 @@ body {
   content: '';
   position: absolute;
   bottom: -10px;
- width: fit-content;  height: 4px;
-  background: var(--primary-yellow);
+ width: 100%;  background: var(--primary-yellow);
   border-radius: 2px;
 }
 
