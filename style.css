@@ -57,8 +57,10 @@ body {
   color: var(--primary-yellow);
   position: relative;
   animation: fadeInUp 1s ease-out;
-	 border-bottom: 4px solid var(--primary-yellow);
-}
+ text-decoration: underline;
+ text-decoration-color: var(--primary-yellow);
+ text-decoration-thickness: 4px;
+ text-underline-offset: 8px;}
 
 
 /* ========== NAVBAR ========== */
