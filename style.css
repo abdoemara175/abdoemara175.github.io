@@ -1,3 +1,4 @@
+66
 /* ========== GLOBAL STYLES ========== */
 html {
 	 scroll-behavior: smooth;
@@ -63,7 +64,7 @@ body {
 .section-title::after {
   content: '';
   position: absolute;
-  bottom: -11.5;
+  bottom: -10px.5;
  left: 5px;
  height: 4px;
  right: 5px;
