@@ -48,7 +48,11 @@ body {
 .section-title {
   font-size: 3rem;
   font-weight: 700;
-  text-align: center;
+	 width: fit-content;
+	 margin: 0 auto;
+	 display: flex;
+ justify-content: center;
+ align-items: center;
   margin-bottom: 60px;
   color: var(--primary-yellow);
   position: relative;
@@ -59,10 +63,7 @@ body {
   content: '';
   position: absolute;
   bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: auto;
-  height: 4px;
+ width: fit-content;  height: 4px;
   background: var(--primary-yellow);
   border-radius: 2px;
 }
