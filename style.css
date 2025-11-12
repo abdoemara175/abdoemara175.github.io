@@ -58,7 +58,7 @@ body {
   color: var(--primary-yellow);
   position: relative;
   animation: fadeInUp 1s ease-out;
-	 padding-bottom: 13px;
+	 padding-bottom: 17px;
 }
 
 .section-title::after {
