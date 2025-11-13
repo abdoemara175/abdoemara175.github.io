@@ -733,4 +733,25 @@ content: 'Abdelrahman Emara';              font-size: 1.5rem;
       display: inline-block;
   }
 
+/* ========== LINK PREVIEW CARD SECTION ========== */
+#link-preview { background: var(--secondary-black); }
+.link-preview-container { max-width: 600px; margin: 0 auto; display: flex; justify-content: center; align-items: center; }
+.link-preview-card { background: linear-gradient(135deg, var(--secondary-black) 0%, rgba(255, 215, 0, 0.05) 100%); border: 2px solid rgba(255, 215, 0, 0.2); border-radius: 15px; padding: 30px; display: flex; gap: 25px; align-items: center; transition: var(--transition); box-shadow: 0 10px 40px rgba(255, 215, 0, 0.1); width: 100%; }
+.link-preview-card:hover { border-color: var(--primary-yellow); box-shadow: 0 15px 50px rgba(255, 215, 0, 0.25); transform: translateY(-5px); }
+.link-preview-image { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-yellow); box-shadow: 0 0 30px rgba(255, 215, 0, 0.3); flex-shrink: 0; transition: var(--transition); animation: slideInScale 1s ease-out; }
+.link-preview-card:hover .link-preview-image { transform: scale(1.1); box-shadow: 0 0 40px rgba(255, 215, 0, 0.5); }
+.link-preview-info { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+.link-preview-title { font-size: 1.6rem; font-weight: 700; color: var(--primary-yellow); margin: 0; transition: var(--transition); }
+.link-preview-card:hover .link-preview-title { color: var(--text-white); text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+.link-preview-description { font-size: 1rem; color: var(--text-gray); margin: 0; line-height: 1.4; }
+.link-preview-url { font-size: 0.95rem; color: var(--primary-yellow); margin: 0; font-weight: 500; opacity: 0.8; }
+.link-preview-actions { display: flex; gap: 12px; margin-top: 8px; }
+.preview-btn { padding: 10px 20px; border: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: var(--transition); flex: 1; background: var(--primary-yellow); color: var(--primary-black); box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3); }
+.preview-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5); }
+.preview-btn:active { transform: translateY(0); }
+.preview-btn-secondary { background: rgba(255, 215, 0, 0.1); color: var(--primary-yellow); border: 2px solid var(--primary-yellow); }
+.preview-btn-secondary:hover { background: var(--primary-yellow); color: var(--primary-black); }
+@media (max-width: 768px) { .link-preview-card { flex-direction: column; padding: 20px; gap: 15px; text-align: center; } .link-preview-image { width: 100px; height: 100px; border-width: 2px; } .link-preview-title { font-size: 1.4rem; } .link-preview-actions { flex-wrap: wrap; } .preview-btn { padding: 9px 18px; font-size: 0.9rem; } }
+@media (max-width: 480px) { .link-preview-card { padding: 15px; } .link-preview-image { width: 80px; height: 80px; } .link-preview-title { font-size: 1.2rem; } .link-preview-description { font-size: 0.9rem; } .link-preview-url { font-size: 0.85rem; } .preview-btn { padding: 8px 15px; font-size: 0.85rem; } }
+
 
