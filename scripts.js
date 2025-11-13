@@ -133,4 +133,40 @@ function sharePortfolio() {
  navigator.clipboard.writeText(window.location.href);
  alert('Link copied to clipboard!');
  }
+
+ // ========== LINK PREVIEW CARD FUNCTIONS ==========
+function copyToClipboard() {
+ const url = window.location.href;
+ navigator.clipboard.writeText(url).then(() => {
+ const btn = event.target;
+ const originalText = btn.textContent;
+ btn.textContent = 'Copied!';
+ btn.style.background = 'rgba(255, 215, 0, 0.8)';
+ setTimeout(() => {
+ btn.textContent = originalText;
+ btn.style.background = '';
+ }, 2000);
+ }).catch(err => {
+ alert('Failed to copy: ' + err);
+ });
+}
+
+function shareLink() {
+ const shareData = {
+ title: 'Abdelrahman Emara - Portfolio',
+ text: 'Check out my portfolio & CV - UI/UX Designer & Web Developer',
+ url: window.location.href
+ };
+ 
+ if (navigator.share) {
+ navigator.share(shareData).catch(err => console.log('Error sharing:', err));
+ } else {
+ // Fallback: copy to clipboard
+ navigator.clipboard.writeText(shareData.url).then(() => {
+ alert('Link copied to clipboard!');
+ }).catch(err => {
+ alert('Failed to share: ' + err);
+ });
+ }
+}
 }
