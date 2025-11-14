@@ -443,4 +443,106 @@ body {
 
 .activity-item p {
   color: var(--text-gray);
-  font-size: cl
+  font-size: cl}
+
+/* ===== CONTACT SECTION STYLES ===== */
+.contact-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(1rem, 2vw, 2rem);
+  margin-top: 2rem;
+}
+
+.contact-icon {
+  width: clamp(2.5rem, 6vw, 4rem);
+  height: clamp(2.5rem, 6vw, 4rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.contact-icon i {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: var(--primary-yellow);
+}
+
+/* ===== FOOTER STYLES ===== */
+footer {
+  padding: clamp(1.5rem, 5vw, 2rem);
+  text-align: center;
+  margin-top: clamp(3rem, 8vw, 5rem);
+  border-top: 1px solid var(--secondary-black);
+}
+
+footer p {
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  color: var(--text-white);
+  line-height: 1.6;
+}
+
+/* ===== RESPONSIVE DESIGN (MOBILE) ===== */
+@media (max-width: 768px) {
+  .contact-icons {
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .contact-icon {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .contact-icon i {
+    font-size: 1.75rem;
+  }
+
+  #contact {
+    padding: clamp(2rem, 5vw, 3rem);
+  }
+
+  footer {
+    padding: 1.5rem 1rem;
+    margin-top: 2rem;
+  }
+
+  footer p {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-icons {
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .contact-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .contact-icon i {
+    font-size: 1.25rem;
+  }
+
+  #contact {
+    padding: 1.5rem 1rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  footer {
+    padding: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  footer p {
+    font-size: 0.75rem;
+    word-break: break-word;
+  }
+}
