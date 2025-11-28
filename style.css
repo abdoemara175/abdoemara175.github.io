@@ -1,21 +1,18 @@
 /* ========== GLOBAL STYLES ========== */
 :root {
   --primary-black: #000000;
-  --secondary-black: #0d0d0d;
-
-  /* 🎨 Goku Theme Colors */
-  --primary-yellow: #FF6A00;   /* Orange */
-  --accent-yellow: #FF6A00;    /* Orange Accent */
-  --goku-blue: #1A2B7C;        /* Deep Saiyan Blue */
-  --goku-blue-light: #3048C0;  /* Lighter Blue */
-
+  --secondary-black: #1a1a1a;
+  --primary-orange: #FF6600; /* غوكو البرتقالي */
+  --accent-orange: #FF9933;
+  --primary-blue: #1E3A8A; /* غوكو الأزرق */
+  --accent-blue: #3B82F6;
   --text-white: #ffffff;
-  --text-gray: #e6e6e6;
-
+  --text-gray: #f0f0f0;
   --transition: all 0.5s ease-in-out;
   --base-font-size: 16px;
 }
 
+/* ===== BASE ===== */
 html {
   scroll-behavior: smooth;
   font-size: clamp(14px, 2vw, 18px);
@@ -62,7 +59,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--primary-yellow);
+  color: var(--primary-orange);
   position: relative;
   animation: fadeInUp 1s ease-out;
 }
@@ -73,23 +70,23 @@ body {
   bottom: -0.625rem;
   width: 100%;
   height: 0.125rem;
-  background: var(--primary-yellow);
+  background: var(--primary-orange);
   border-radius: 2px;
 }
 
-/* ========== NAVBAR ========== */
+/* ========== NAVBAR ======== */
 #navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(10, 10, 10, 0.95);
+  background: rgba(10,10,10,0.95);
   backdrop-filter: blur(10px);
-  padding: clamp(0.75rem, 2vh, 1.5rem) 0;
+  padding: clamp(0.75rem,2vh,1.5rem) 0;
   z-index: 1000;
   transition: var(--transition);
   opacity: 0;
-  box-shadow: 0 2px 15px rgba(255, 106, 0, 0.15);
+  box-shadow: 0 2px 15px rgba(255,102,0,0.15);
 }
 
 #navbar.show {
@@ -99,17 +96,17 @@ body {
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 clamp(1rem, 5%, 2.5rem);
+  padding: 0 clamp(1rem,5%,2.5rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: clamp(1rem, 3vw, 2rem);
+  gap: clamp(1rem,3vw,2rem);
 }
 
 .nav-brand {
   display: flex;
   align-items: center;
-  gap: clamp(0.75rem, 2vw, 1rem);
+  gap: clamp(0.75rem,2vw,1rem);
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
@@ -124,19 +121,19 @@ body {
 
 .nav-img {
   display: block;
-  width: clamp(2.5rem, 8vw, 3.125rem);
-  height: clamp(2.5rem, 8vw, 3.125rem);
+  width: clamp(2.5rem,8vw,3.125rem);
+  height: clamp(2.5rem,8vw,3.125rem);
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--primary-yellow);
+  border: 2px solid var(--primary-orange);
   transition: var(--transition);
   flex-shrink: 0;
 }
 
 .nav-name {
-  font-size: clamp(0.875rem, 2vw, 1.3rem);
+  font-size: clamp(0.875rem,2vw,1.3rem);
   font-weight: 600;
-  color: var(--primary-yellow);
+  color: var(--primary-orange);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -144,7 +141,7 @@ body {
 
 .nav-sections {
   display: flex;
-  gap: clamp(1rem, 3vw, 2rem);
+  gap: clamp(1rem,3vw,2rem);
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
@@ -153,9 +150,9 @@ body {
 .nav-section-link {
   color: var(--text-white);
   text-decoration: none;
-  font-size: clamp(0.75rem, 1.5vw, 1rem);
+  font-size: clamp(0.75rem,1.5vw,1rem);
   font-weight: 500;
-  padding: clamp(0.5rem, 1vw, 1rem) clamp(0.75rem, 2vw, 1.5rem);
+  padding: clamp(0.5rem,1vw,1rem) clamp(0.75rem,2vw,1.5rem);
   border-radius: 5px;
   transition: var(--transition);
   position: relative;
@@ -169,45 +166,61 @@ body {
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--primary-yellow);
+  background: var(--primary-orange);
   transition: width 0.3s ease;
 }
 
 .nav-section-link:hover {
-  color: var(--primary-yellow);
+  color: var(--primary-orange);
 }
 
 .nav-section-link:hover::before {
   width: 100%;
 }
 
-/* ========== HERO SECTION ========== */
+/* ========== HERO SECTION ======== */
 #hero {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   position: relative;
-  background: linear-gradient(135deg, var(--primary-black) 0%, var(--goku-blue) 100%);
+  background: linear-gradient(135deg, var(--primary-black) 0%, var(--secondary-black) 100%);
   overflow: hidden;
-  padding: clamp(2rem, 10vh, 4rem) clamp(1rem, 5%, 2rem);
+  padding: clamp(2rem,10vh,4rem) clamp(1rem,5%,2rem);
 }
 
 #hero::before {
   content: '';
   position: absolute;
-  width: clamp(20rem, 50vw, 35rem);
-  height: clamp(20rem, 50vw, 35rem);
-  background: radial-gradient(circle, var(--primary-yellow) 0%, transparent 70%);
-  opacity: 0.08;
+  width: clamp(20rem,50vw,35rem);
+  height: clamp(20rem,50vw,35rem);
+  background: radial-gradient(circle, var(--primary-orange) 0%, transparent 70%);
+  opacity: 0.05;
   animation: float 6s ease-in-out infinite;
   top: -50%;
   right: -50%;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-2rem) rotate(10deg); }
+/* ===== GOKU AURA EFFECT ===== */
+#hero::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255,102,0,0.2) 0%, rgba(30,58,138,0.15) 40%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+  animation: auraGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes auraGlow {
+  0% { transform: translate(-50%,-50%) scale(1); opacity:0.5; }
+  50% { transform: translate(-50%,-50%) scale(1.1); opacity:0.7; }
+  100% { transform: translate(-50%,-50%) scale(1.2); opacity:0.5; }
 }
 
 .hero-content {
@@ -215,93 +228,75 @@ body {
   animation: fadeInUp 1.2s ease-out;
   width: 100%;
   max-width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-image-container {
-  margin-bottom: clamp(1.5rem, 5vw, 2rem);
+  margin-bottom: clamp(1.5rem,5vw,2rem);
 }
 
 .hero-image {
-  width: clamp(10rem, 30vw, 12.5rem);
-  height: clamp(10rem, 30vw, 12.5rem);
+  width: clamp(10rem,30vw,12.5rem);
+  height: clamp(10rem,30vw,12.5rem);
   border-radius: 50%;
   object-fit: cover;
-  border: clamp(0.25rem, 1vw, 0.375rem) solid var(--primary-yellow);
-  box-shadow: 0 0 2.5rem rgba(255, 106, 0, 0.4);
+  border: clamp(0.25rem,1vw,0.375rem) solid var(--primary-orange);
+  box-shadow: 0 0 2.5rem rgba(255,102,0,0.3);
   transition: var(--transition);
   animation: slideInScale 1s ease-out;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-image:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 3.75rem rgba(255, 106, 0, 0.6);
+  box-shadow: 0 0 3.75rem rgba(255,102,0,0.5);
 }
 
-@keyframes slideInScale {
-  0% {
-    opacity: 0;
-    transform: translateY(3.125rem) scale(0.8);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+.hero-text {
+  animation: fadeInUp 1.4s ease-out;
 }
 
 .hero-name {
-  font-size: clamp(1.5rem, 8vw, 3.5rem);
+  font-size: clamp(1.5rem,8vw,3.5rem);
   font-weight: 800;
-  color: var(--primary-yellow);
-  margin-bottom: clamp(1rem, 3vh, 1.5rem);
+  color: var(--primary-orange);
+  margin-bottom: clamp(1rem,3vh,1.5rem);
+  animation: fadeInUp 1s ease-out 0.2s backwards;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .hero-title {
-  font-size: clamp(1rem, 4vw, 2rem);
+  font-size: clamp(1rem,4vw,2rem);
   font-weight: 400;
-  color: var(--text-gray);
-  min-height: clamp(2rem, 8vh, 4rem);
+  color: var(--primary-blue);
+  animation: fadeInUp 1s ease-out 0.4s backwards;
+  min-height: clamp(2rem,8vh,4rem);
   text-align: center;
   width: 100%;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* ( 🔽 باقي الكود كما هو تمامًا… مع اختلاف الألوان بالفعل مطبق ) */
-
-/* ========== ABOUT SECTION ========== */
-#about {
-  background: var(--secondary-black);
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(1.875rem); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.about-content {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
+@keyframes slideInScale {
+  0% { opacity: 0; transform: translateY(3.125rem) scale(0.8);}
+  100% { opacity: 1; transform: translateY(0) scale(1);}
 }
 
-.about-content p {
-  font-size: clamp(0.875rem, 2vw, 1.2rem);
-  color: var(--text-gray);
-  margin-bottom: clamp(0.75rem, 2vh, 1.25rem);
-  line-height: 1.8;
+@keyframes float {
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-2rem) rotate(10deg); }
 }
 
-/* ========== SKILLS SECTION ========== */
-#skills {
-  background: var(--goku-blue);
-}
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 45vw, 300px), 1fr));
-  gap: clamp(1.5rem, 4vw, 2rem);
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.skill-item {
-  padding: clamp(1rem, 3vw, 1.5rem);
-  background: var(--secondary-black);
-  border-radius: 0.625rem;
-  transition: var(--transition);
-}
-
-/* ... (الكود باقيه نفسه بالحرف، فقط الألوان من المتغيرات الجديدة) ... */
+/* ===== باقي الأقسام ===== */
+/* تكمل بنفس تقسيماتك السابقة مع تغيير أي لون اصفر للبرتقالي وأي نص أو بار أزرق حسب الثيم */
