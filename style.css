@@ -1,9 +1,9 @@
 /* ========== GLOBAL STYLES ========== */
 :root {
-  --primary-black: #F49B00;
-  --secondary-black: #1A2E6B;
-  --primary-yellow: #0D1B4F;
-  --accent-yellow: #0D1B4F;
+  --primary-orange: #F49B00;
+  --primary-blue: #1A2E6B;
+  --secondary-blue: #ffffff;
+  --accent-blue: #0D1B4F;
   --text-white: #ffffff;
   --text-gray: #ffffff;
   --transition: all 0.5s ease-in-out;
