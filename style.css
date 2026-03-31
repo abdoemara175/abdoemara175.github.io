@@ -41,13 +41,13 @@ body {
 .section {
   padding: 6rem 0;
   opacity: 0;
-  transform: translateY(15px); /* Subtle lift */
-  transition: var(--transition-slow);
+  transform: translateY(30px) scale(0.98); /* More pronounced entrance */
+  transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .section.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
 .section-title {
@@ -61,6 +61,7 @@ body {
   color: var(--primary-yellow);
   position: relative;
   letter-spacing: 0.5px;
+  text-align: center;
 }
 
 .section-title::after {
@@ -222,7 +223,7 @@ body {
   padding: 1.2rem;
   border-radius: 12px;
   border: 1px solid #252525;
-  transition: var(--transition-smooth);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .skill-item:hover {
@@ -266,7 +267,7 @@ body {
   padding: 1.5rem;
   border-radius: 15px;
   margin-bottom: 1.5rem;
-  transition: var(--transition-smooth);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .activity-group:hover {
@@ -301,6 +302,46 @@ body {
   color: var(--text-gray);
 }
 
+/* ========== COURSES SECTION ========== */
+.course-group {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #1a1a1a;
+  border-radius: 12px;
+  border: 1px solid #252525;
+  transition: var(--transition-smooth);
+}
+
+.course-group:hover {
+  border-color: rgba(255, 215, 0, 0.3);
+  transform: translateY(-3px);
+}
+
+.course-group h3 {
+  color: var(--primary-yellow);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.course-group ul {
+  list-style: none;
+}
+
+.course-group ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-gray);
+}
+
+.course-group ul li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--primary-yellow);
+}
+
 /* ========== EVENTS SECTION ========== */
 .events-grid {
   display: grid;
@@ -313,7 +354,7 @@ body {
   border-radius: 15px;
   padding: 1.5rem;
   text-align: center;
-  transition: var(--transition-smooth);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border: 1px solid #252525;
 }
 
@@ -339,6 +380,10 @@ body {
 .event-loc {
   color: #777;
   font-size: 0.8rem;
+}
+
+.event-loc i {
+  color: var(--primary-yellow) !important;
 }
 
 /* ========== CONTACT SECTION ========== */
@@ -432,29 +477,56 @@ footer {
   }
 
   .section { padding: 4rem 0; }
-  .section-title { font-size: 1.7rem; margin-bottom: 2.5rem; }
+  .section-title { 
+    font-size: 1.5rem; 
+    margin-bottom: 2.5rem;
+    white-space: nowrap;
+    width: 100%;
+    justify-content: center;
+  }
   
   .hero-image { width: 130px; height: 130px; }
   .hero-name { font-size: 2rem; }
   .hero-title { font-size: 1rem; }
 
+  .about-content {
+    text-align: left;
+    padding: 0 0.5rem;
+  }
+
   .contact-grid {
-    gap: 0.8rem;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.5rem;
   }
   
+  .contact-card {
+    flex: 1;
+  }
+
   .contact-icon-box {
-    width: 48px;
-    height: 48px;
+    width: 100%;
+    aspect-ratio: 1/1;
+    height: auto;
+    max-width: 60px;
     font-size: 1.2rem;
   }
 }
 
 @media (max-width: 480px) {
   .contact-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
     width: 100%;
+    gap: 0.4rem;
   }
   
   .contact-card span { display: none; }
+  
+  .contact-icon-box {
+    max-width: 50px;
+  }
 }
