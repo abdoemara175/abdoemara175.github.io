@@ -50,7 +50,7 @@ const navbar = document.getElementById('navbar');
 const heroSection = document.getElementById('hero');
 
 window.addEventListener('scroll', () => {
- if (window.scrollY > heroSection.offsetHeight - 100) {
+ if (window.scrollY > 100) {
  navbar.classList.add('show');
  } else {
  navbar.classList.remove('show');
@@ -99,38 +99,20 @@ if (skillsSection) {
  skillsObserver.observe(skillsSection);
 }
 
-// ========== CONTACT ICONS SINGLE CLICK ==========
-const contactIcons = document.querySelectorAll('.contact-icon');
-
-contactIcons.forEach(icon => {
- icon.addEventListener('click', (e) => {
- e.preventDefault();
- 
- // Add click effect
- icon.classList.add('clicked');
- setTimeout(() => {
- icon.classList.remove('clicked');
- }, 300);
- 
- // Open the link immediately
- const url = icon.getAttribute('href');
- if (url) {
- window.open(url, '_blank');
- }
- });
+// ========== SMOOTH SCROLL FOR NAV LINKS ==========
+document.querySelectorAll('.nav-section-link, .nav-brand').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href.startsWith('#')) {
+            e.preventDefault();
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
 });
-
-// ========== SHARE FUNCTION ==========
-function sharePortfolio() {
- if (navigator.share) {
- navigator.share({
- title: 'Abdelrahman Emara - Portfolio',
- text: 'Check out my portfolio!',
- url: window.location.href
- }).catch(err => console.log('Error sharing:', err));
- } else {
- // Fallback: copy to clipboard
- navigator.clipboard.writeText(window.location.href);
- alert('Link copied to clipboard!');
- }
-}
