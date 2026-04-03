@@ -116,3 +116,41 @@ document.querySelectorAll('.nav-section-link, .nav-brand').forEach(anchor => {
         }
     });
 });
+
+// ========== EVENTS AUTO-SCROLL ==========
+const eventsGrid = document.querySelector('.events-grid');
+const eventCards = document.querySelectorAll('.event-card');
+let eventIndex = 0;
+
+function autoScrollEvents() {
+    if (!eventsGrid || eventCards.length === 0) return;
+    
+    eventIndex++;
+    
+    // Calculate how many cards are visible
+    const containerWidth = document.querySelector('.events-slider-container').offsetWidth;
+    const cardWidth = eventCards[0].offsetWidth + 24; // width + gap (1.5rem = 24px)
+    const maxIndex = eventCards.length - Math.floor(containerWidth / cardWidth);
+    
+    if (eventIndex > maxIndex) {
+        eventIndex = 0;
+    }
+    
+    const translateX = -eventIndex * cardWidth;
+    eventsGrid.style.transform = `translateX(${translateX}px)`;
+}
+
+// Change slide every 3 seconds
+let eventInterval = setInterval(autoScrollEvents, 3000);
+
+// Pause on hover
+const sliderContainer = document.querySelector('.events-slider-container');
+if (sliderContainer) {
+    sliderContainer.addEventListener('mouseenter', () => {
+        clearInterval(eventInterval);
+    });
+    
+    sliderContainer.addEventListener('mouseleave', () => {
+        eventInterval = setInterval(autoScrollEvents, 3000);
+    });
+}

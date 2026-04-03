@@ -358,10 +358,17 @@ body {
 }
 
 /* ========== EVENTS SECTION ========== */
+.events-slider-container {
+  overflow: hidden;
+  padding: 10px 0;
+  cursor: grab;
+}
+
 .events-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  display: flex;
   gap: 1.5rem;
+  transition: transform 0.5s ease-in-out;
+  width: max-content;
 }
 
 .event-card {
@@ -371,6 +378,8 @@ body {
   text-align: center;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border: 1px solid #252525;
+  width: 280px; /* Fixed width for cards in slider */
+  flex-shrink: 0;
 }
 
 .event-card:hover {
