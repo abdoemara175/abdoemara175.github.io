@@ -83,11 +83,13 @@ const skillsObserver = new IntersectionObserver((entries) => {
  skillsAnimated = true;
  const skillItems = document.querySelectorAll('.skill-item');
  
- skillItems.forEach(item => {
+ skillItems.forEach((item, index) => {
+ setTimeout(() => {
  item.classList.add('animate');
  const progressBar = item.querySelector('.skill-progress');
  const progress = progressBar.getAttribute('data-progress');
  progressBar.style.setProperty('--progress', progress + '%');
+ }, index * 100);
  });
  }
  });
@@ -154,3 +156,114 @@ if (sliderContainer) {
         eventInterval = setInterval(autoScrollEvents, 3000);
     });
 }
+
+// ========== MAGNETIC EFFECT FOR CONTACT ICONS ==========
+const contactCards = document.querySelectorAll('.contact-card');
+
+contactCards.forEach(card => {
+    const icon = card.querySelector('.contact-icon-box');
+    
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        const distance = Math.sqrt(x * x + y * y);
+        const maxDistance = 50;
+        
+        if (distance < maxDistance) {
+            const strength = (1 - distance / maxDistance) * 15;
+            icon.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px) scale(1.1)`;
+        }
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        icon.style.transform = '';
+    });
+});
+
+// ========== ACTIVITY ITEM HOVER EFFECT ==========
+const activityItems = document.querySelectorAll('.activity-item');
+
+activityItems.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+        item.style.animation = 'slideIn 0.4s ease-out';
+    });
+});
+
+// ========== SCROLL PROGRESS INDICATOR ==========
+function updateScrollProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    
+    // Optional: Add a visual progress bar if needed
+    document.documentElement.style.setProperty('--scroll-percent', scrollPercent + '%');
+}
+
+window.addEventListener('scroll', updateScrollProgress);
+
+// ========== PARALLAX EFFECT FOR HERO IMAGE ==========
+const heroImage = document.querySelector('.hero-image');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY < window.innerHeight) {
+        const offset = window.scrollY * 0.5;
+        if (heroImage) {
+            heroImage.style.transform = `translateY(${offset}px)`;
+        }
+    }
+});
+
+// ========== ENHANCED SECTION TITLE ANIMATION ==========
+const sectionTitles = document.querySelectorAll('.section-title');
+
+const titleObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.animation = 'titleGlow 2s ease-in-out infinite';
+        }
+    });
+}, { threshold: 0.5 });
+
+sectionTitles.forEach(title => {
+    titleObserver.observe(title);
+});
+
+// ========== SKILL ITEM STAGGER ANIMATION ==========
+const skillItems = document.querySelectorAll('.skill-item');
+
+skillItems.forEach((item, index) => {
+    item.style.setProperty('--stagger-delay', `${index * 0.1}s`);
+});
+
+// ========== SMOOTH HOVER EFFECT FOR CARDS ==========
+const allCards = document.querySelectorAll('.skill-item, .event-card, .course-group, .activity-group');
+
+allCards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        this.style.transition = 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+    });
+});
+
+// ========== CURSOR TRAIL EFFECT ==========
+document.addEventListener('mousemove', (e) => {
+    // Optional: Add cursor trail particles for extra delight
+    // This is a lightweight version that doesn't impact performance
+    const x = e.clientX;
+    const y = e.clientY;
+    
+    // Update cursor position for potential use in other effects
+    document.documentElement.style.setProperty('--mouse-x', x + 'px');
+    document.documentElement.style.setProperty('--mouse-y', y + 'px');
+});
+
+// ========== PERFORMANCE OPTIMIZATION ==========
+// Debounce scroll events for better performance
+let scrollTimeout;
+window.addEventListener('scroll', () => {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+        // Perform heavy operations here if needed
+    }, 100);
+}, { passive: true });
