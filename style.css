@@ -15,6 +15,31 @@ html {
   font-size: 16px;
 }
 
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--secondary-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-yellow);
+  border-radius: 5px;
+  border: 2px solid var(--secondary-black);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffed4e;
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-color: var(--primary-yellow) var(--secondary-black);
+  scrollbar-width: thin;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -76,7 +101,7 @@ body {
 }
 
 .about-content {
-  text-align: center;
+  text-align: left; /* Changed to left alignment */
   max-width: 850px;
   margin: 0 auto;
   padding: 0 1.5rem;
@@ -87,7 +112,7 @@ body {
   font-size: 1.15rem;
   color: var(--text-gray);
   line-height: 1.9;
-  text-align: center;
+  text-align: left; /* Changed to left alignment */
 }
 
 .section:hover .section-title::after {
@@ -574,10 +599,10 @@ footer {
   .contact-grid {
     flex-direction: row; /* Horizontal icons */
     flex-wrap: nowrap; /* No wrapping */
-    justify-content: space-between;
-    gap: 0.5rem;
+    justify-content: center;
+    gap: 1rem;
     width: 100%;
-    overflow-x: auto; /* Allow scroll if many icons */
+    overflow-x: visible; /* No scroll */
     padding-bottom: 10px;
   }
 
@@ -594,5 +619,64 @@ footer {
 
   .contact-card span {
     display: none; /* Hide text on mobile to keep icons on one line */
+  }
+}
+
+/* ========== LOADING ANIMATION ========== */
+.loading-spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--secondary-black);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.loading-spinner.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.spinner-circle {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(255, 215, 0, 0.2);
+  border-top: 4px solid var(--primary-yellow);
+  border-right: 4px solid var(--primary-yellow);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  color: var(--primary-yellow);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
   }
 }

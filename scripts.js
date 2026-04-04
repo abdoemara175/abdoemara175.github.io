@@ -1,3 +1,13 @@
+// ========== LOADING SPINNER ==========
+window.addEventListener('load', () => {
+  const loadingSpinner = document.getElementById('loadingSpinner');
+  if (loadingSpinner) {
+    setTimeout(() => {
+      loadingSpinner.classList.add('hidden');
+    }, 500); // Hide after 500ms of page load
+  }
+});
+
 // ========== ANIMATED TITLES IN HERO SECTION ==========
 const titles = [
  'FCI-ZU Student',
@@ -42,8 +52,12 @@ function typeAndDeleteAnimation() {
  type();
 }
 
-// Start animation
-typeAndDeleteAnimation();
+// Start animation when page is loaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', typeAndDeleteAnimation);
+} else {
+  typeAndDeleteAnimation();
+}
 
 // ========== NAVBAR SCROLL BEHAVIOR ==========
 const navbar = document.getElementById('navbar');
