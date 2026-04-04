@@ -729,12 +729,14 @@ body {
 /* ========== EVENTS SECTION ========== */
 .events-slider-container {
   overflow: hidden;
-  padding: 10px 0;
+  padding: 20px 0;
   cursor: grab;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  position: relative;
+  width: 100%;
 }
 
 .events-slider-container:active {
@@ -744,9 +746,27 @@ body {
 .events-grid {
   display: flex;
   gap: 1.5rem;
-  transition: none;
   width: max-content;
   will-change: transform;
+  animation: scroll-infinite 30s linear infinite;
+}
+
+.events-slider-container:hover .events-grid {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-infinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50%));
+  }
+}
+
+/* When dragging, we'll disable the animation via JS */
+.events-grid.dragging {
+  animation: none !important;
 }
 
 .event-card {

@@ -129,117 +129,124 @@ if (eventsGrid && eventCards.length > 0) {
     const clonedCards = Array.from(eventCards).map(card => card.cloneNode(true));
     clonedCards.forEach(card => eventsGrid.appendChild(card));
     
-    let currentPosition = 0;
-    let isAutoScrolling = true;
     let isDragging = false;
     let startX = 0;
-    let dragDistance = 0;
-    let autoScrollSpeed = 0.5; // pixels per frame
-    let lastFrameTime = Date.now();
-    
-    const cardWidth = eventCards[0].offsetWidth + 24; // width + gap
-    const totalWidth = cardWidth * eventCards.length;
-    
-    function smoothScroll() {
-        if (!isAutoScrolling || isDragging) return;
-        
-        const now = Date.now();
-        const deltaTime = (now - lastFrameTime) / 16.67; // Normalize to 60fps
-        lastFrameTime = now;
-        
-        currentPosition += autoScrollSpeed * deltaTime;
-        
-        // Infinite loop: reset position when reaching the end
-        if (currentPosition >= totalWidth) {
-            currentPosition = 0;
-        }
-        
-        eventsGrid.style.transform = `translateX(-${currentPosition}px)`;
-        eventsGrid.style.transition = 'none';
-        
-        requestAnimationFrame(smoothScroll);
+    let scrollLeft = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let animationID = 0;
+
+    // Function to get current transform value
+    function getTranslateX() {
+        const style = window.getComputedStyle(eventsGrid);
+        const matrix = new WebKitCSSMatrix(style.transform);
+        return matrix.m41;
     }
-    
-    // Start smooth scrolling
-    smoothScroll();
-    
-    // ========== DRAG & TOUCH INTERACTION ==========
-    let touchStartX = 0;
-    let touchStartTime = 0;
-    
+
     function handleDragStart(e) {
         isDragging = true;
-        isAutoScrolling = false;
         startX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-        dragDistance = 0;
-        lastFrameTime = Date.now();
+        
+        // Get current position from animation
+        currentTranslate = getTranslateX();
+        prevTranslate = currentTranslate;
+        
+        eventsGrid.classList.add('dragging');
+        eventsGrid.style.transform = `translateX(${currentTranslate}px)`;
+        
+        cancelAnimationFrame(animationID);
     }
-    
+
     function handleDragMove(e) {
         if (!isDragging) return;
-        
         const currentX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-        dragDistance = currentX - startX;
+        const diff = currentX - startX;
+        currentTranslate = prevTranslate + diff;
         
-        eventsGrid.style.transition = 'none';
-        eventsGrid.style.transform = `translateX(-${currentPosition - dragDistance}px)`;
+        // Infinite loop logic during drag
+        const totalWidth = eventsGrid.scrollWidth / 2;
+        if (currentTranslate > 0) {
+            currentTranslate -= totalWidth;
+            startX = currentX;
+            prevTranslate = currentTranslate;
+        } else if (currentTranslate < -totalWidth) {
+            currentTranslate += totalWidth;
+            startX = currentX;
+            prevTranslate = currentTranslate;
+        }
+        
+        eventsGrid.style.transform = `translateX(${currentTranslate}px)`;
     }
-    
-    function handleDragEnd(e) {
+
+    function handleDragEnd() {
         if (!isDragging) return;
         isDragging = false;
         
-        // Smooth transition after drag
-        eventsGrid.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        // To make the transition back to CSS animation seamless:
+        // 1. Calculate the current position relative to the loop
+        const totalWidth = eventsGrid.scrollWidth / 2;
+        let finalTranslate = currentTranslate % totalWidth;
+        if (finalTranslate > 0) finalTranslate -= totalWidth;
         
-        // Calculate swipe velocity
-        const swipeThreshold = 50;
-        if (Math.abs(dragDistance) > swipeThreshold) {
-            const swipeDirection = dragDistance > 0 ? -cardWidth : cardWidth;
-            currentPosition -= swipeDirection;
-        }
+        // 2. Apply the normalized position
+        eventsGrid.style.transform = `translateX(${finalTranslate}px)`;
         
-        // Ensure position stays within bounds
-        if (currentPosition < 0) {
-            currentPosition = totalWidth + currentPosition;
-        }
-        if (currentPosition >= totalWidth) {
-            currentPosition = currentPosition - totalWidth;
-        }
+        // 3. Briefly use a transition to "snap" to a clean state if needed, 
+        // then restart the CSS animation.
+        // For simplicity and "smoothness", we just remove the dragging class.
+        // The CSS animation will restart from 0, which might cause a jump.
+        // To avoid the jump, we'll use JS for the animation instead of CSS.
         
-        eventsGrid.style.transform = `translateX(-${currentPosition}px)`;
-        
-        // Resume auto-scrolling after a delay
-        setTimeout(() => {
-            isAutoScrolling = true;
-            lastFrameTime = Date.now();
-        }, 600);
+        eventsGrid.classList.remove('dragging');
+        startJSAnimation(finalTranslate);
     }
-    
-    // Mouse events
-    sliderContainer.addEventListener('mousedown', handleDragStart);
-    document.addEventListener('mousemove', handleDragMove);
-    document.addEventListener('mouseup', handleDragEnd);
-    
-    // Touch events
-    sliderContainer.addEventListener('touchstart', handleDragStart);
-    document.addEventListener('touchmove', handleDragMove);
-    document.addEventListener('touchend', handleDragEnd);
-    
+
+    let currentPos = 0;
+    function startJSAnimation(startPos = 0) {
+        currentPos = startPos;
+        const totalWidth = eventsGrid.scrollWidth / 2;
+        
+        function animate() {
+            if (isDragging) return;
+            
+            currentPos -= 0.8; // Speed of scroll
+            if (currentPos <= -totalWidth) {
+                currentPos = 0;
+            }
+            
+            eventsGrid.style.transform = `translateX(${currentPos}px)`;
+            animationID = requestAnimationFrame(animate);
+        }
+        
+        cancelAnimationFrame(animationID);
+        animationID = requestAnimationFrame(animate);
+    }
+
+    // Start the JS-based smooth animation
+    setTimeout(() => {
+        const totalWidth = eventsGrid.scrollWidth / 2;
+        if (totalWidth > 0) startJSAnimation(0);
+    }, 500);
+
     // Pause on hover
     sliderContainer.addEventListener('mouseenter', () => {
-        isAutoScrolling = false;
+        if (!isDragging) cancelAnimationFrame(animationID);
     });
     
     sliderContainer.addEventListener('mouseleave', () => {
-        if (!isDragging) {
-            isAutoScrolling = true;
-            lastFrameTime = Date.now();
-        }
+        if (!isDragging) startJSAnimation(currentPos);
     });
+
+    sliderContainer.addEventListener('mousedown', handleDragStart);
+    window.addEventListener('mousemove', handleDragMove);
+    window.addEventListener('mouseup', handleDragEnd);
     
-    // Prevent text selection while dragging
-    sliderContainer.addEventListener('selectstart', (e) => {
+    sliderContainer.addEventListener('touchstart', handleDragStart, { passive: true });
+    window.addEventListener('touchmove', handleDragMove, { passive: false });
+    window.addEventListener('touchend', handleDragEnd);
+
+    // Prevent context menu on long press for mobile
+    sliderContainer.addEventListener('contextmenu', e => {
         if (isDragging) e.preventDefault();
     });
 }
