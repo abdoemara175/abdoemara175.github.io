@@ -318,8 +318,28 @@ body {
 }
 
 /* ========== COURSES SECTION ========== */
+.courses-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 769px) {
+  .courses-content {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .course-group {
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+  }
+}
+
 .course-group {
-  margin-bottom: 2rem;
+  margin-bottom: 0;
   padding: 1.5rem;
   background: #1a1a1a;
   border-radius: 12px;
