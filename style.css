@@ -731,6 +731,10 @@ body {
   overflow: hidden;
   padding: 10px 0;
   cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .events-slider-container:active {
@@ -740,8 +744,9 @@ body {
 .events-grid {
   display: flex;
   gap: 1.5rem;
-  transition: transform 0.5s ease-in-out;
+  transition: none;
   width: max-content;
+  will-change: transform;
 }
 
 .event-card {

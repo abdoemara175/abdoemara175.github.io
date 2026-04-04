@@ -119,41 +119,128 @@ document.querySelectorAll('.nav-section-link, .nav-brand').forEach(anchor => {
     });
 });
 
-// ========== EVENTS AUTO-SCROLL ==========
+// ========== SMOOTH INFINITE SCROLL FOR EVENTS ==========
 const eventsGrid = document.querySelector('.events-grid');
 const eventCards = document.querySelectorAll('.event-card');
-let eventIndex = 0;
+const sliderContainer = document.querySelector('.events-slider-container');
 
-function autoScrollEvents() {
-    if (!eventsGrid || eventCards.length === 0) return;
+if (eventsGrid && eventCards.length > 0) {
+    // Clone cards for infinite loop effect
+    const clonedCards = Array.from(eventCards).map(card => card.cloneNode(true));
+    clonedCards.forEach(card => eventsGrid.appendChild(card));
     
-    eventIndex++;
+    let currentPosition = 0;
+    let isAutoScrolling = true;
+    let isDragging = false;
+    let startX = 0;
+    let dragDistance = 0;
+    let autoScrollSpeed = 0.5; // pixels per frame
+    let lastFrameTime = Date.now();
     
-    // Calculate how many cards are visible
-    const containerWidth = document.querySelector('.events-slider-container').offsetWidth;
-    const cardWidth = eventCards[0].offsetWidth + 24; // width + gap (1.5rem = 24px)
-    const maxIndex = eventCards.length - Math.floor(containerWidth / cardWidth);
+    const cardWidth = eventCards[0].offsetWidth + 24; // width + gap
+    const totalWidth = cardWidth * eventCards.length;
     
-    if (eventIndex > maxIndex) {
-        eventIndex = 0;
+    function smoothScroll() {
+        if (!isAutoScrolling || isDragging) return;
+        
+        const now = Date.now();
+        const deltaTime = (now - lastFrameTime) / 16.67; // Normalize to 60fps
+        lastFrameTime = now;
+        
+        currentPosition += autoScrollSpeed * deltaTime;
+        
+        // Infinite loop: reset position when reaching the end
+        if (currentPosition >= totalWidth) {
+            currentPosition = 0;
+        }
+        
+        eventsGrid.style.transform = `translateX(-${currentPosition}px)`;
+        eventsGrid.style.transition = 'none';
+        
+        requestAnimationFrame(smoothScroll);
     }
     
-    const translateX = -eventIndex * cardWidth;
-    eventsGrid.style.transform = `translateX(${translateX}px)`;
-}
-
-// Change slide every 3 seconds
-let eventInterval = setInterval(autoScrollEvents, 3000);
-
-// Pause on hover
-const sliderContainer = document.querySelector('.events-slider-container');
-if (sliderContainer) {
+    // Start smooth scrolling
+    smoothScroll();
+    
+    // ========== DRAG & TOUCH INTERACTION ==========
+    let touchStartX = 0;
+    let touchStartTime = 0;
+    
+    function handleDragStart(e) {
+        isDragging = true;
+        isAutoScrolling = false;
+        startX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+        dragDistance = 0;
+        lastFrameTime = Date.now();
+    }
+    
+    function handleDragMove(e) {
+        if (!isDragging) return;
+        
+        const currentX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+        dragDistance = currentX - startX;
+        
+        eventsGrid.style.transition = 'none';
+        eventsGrid.style.transform = `translateX(-${currentPosition - dragDistance}px)`;
+    }
+    
+    function handleDragEnd(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        
+        // Smooth transition after drag
+        eventsGrid.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        
+        // Calculate swipe velocity
+        const swipeThreshold = 50;
+        if (Math.abs(dragDistance) > swipeThreshold) {
+            const swipeDirection = dragDistance > 0 ? -cardWidth : cardWidth;
+            currentPosition -= swipeDirection;
+        }
+        
+        // Ensure position stays within bounds
+        if (currentPosition < 0) {
+            currentPosition = totalWidth + currentPosition;
+        }
+        if (currentPosition >= totalWidth) {
+            currentPosition = currentPosition - totalWidth;
+        }
+        
+        eventsGrid.style.transform = `translateX(-${currentPosition}px)`;
+        
+        // Resume auto-scrolling after a delay
+        setTimeout(() => {
+            isAutoScrolling = true;
+            lastFrameTime = Date.now();
+        }, 600);
+    }
+    
+    // Mouse events
+    sliderContainer.addEventListener('mousedown', handleDragStart);
+    document.addEventListener('mousemove', handleDragMove);
+    document.addEventListener('mouseup', handleDragEnd);
+    
+    // Touch events
+    sliderContainer.addEventListener('touchstart', handleDragStart);
+    document.addEventListener('touchmove', handleDragMove);
+    document.addEventListener('touchend', handleDragEnd);
+    
+    // Pause on hover
     sliderContainer.addEventListener('mouseenter', () => {
-        clearInterval(eventInterval);
+        isAutoScrolling = false;
     });
     
     sliderContainer.addEventListener('mouseleave', () => {
-        eventInterval = setInterval(autoScrollEvents, 3000);
+        if (!isDragging) {
+            isAutoScrolling = true;
+            lastFrameTime = Date.now();
+        }
+    });
+    
+    // Prevent text selection while dragging
+    sliderContainer.addEventListener('selectstart', (e) => {
+        if (isDragging) e.preventDefault();
     });
 }
 
