@@ -904,10 +904,46 @@ footer {
   font-size: 0.8rem;
   color: #666;
   transition: all 0.4s ease;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+footer p {
+  margin: 0;
+  letter-spacing: 0.3px;
 }
 
 footer:hover {
   color: var(--text-gray);
+}
+
+/* ========== PERFORMANCE OPTIMIZATIONS ========== */
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Optimize for high DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  body {
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+}
+
+/* ========== ACCESSIBILITY ========== */
+/* Focus states for keyboard navigation */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--primary-yellow);
+  outline-offset: 2px;
+}
+
+/* Ensure sufficient color contrast */
+.nav-section-link {
+  color: var(--text-white);
 }
 
 /* ========== RESPONSIVE ========== */
@@ -937,18 +973,22 @@ footer:hover {
     border-radius: 12px;
   }
 
-  .section { padding: 4rem 0; }
+  .section { padding: 3.5rem 0; }
   .section-title { 
-    font-size: clamp(1.2rem, 5vw, 1.5rem); 
+    font-size: clamp(1.4rem, 5vw, 1.8rem); 
     margin-bottom: 2.5rem;
-    white-space: nowrap;
+    white-space: normal;
     width: 100%;
     justify-content: center;
+    letter-spacing: 0.5px;
   }
   
   .hero-image { width: 130px; height: 130px; }
-  .hero-name { font-size: 2rem; }
-  .hero-title { font-size: 1rem; }
+  .hero-image-container::before {
+    inset: -6px;
+  }
+  .hero-name { font-size: clamp(1.8rem, 6vw, 2.4rem); }
+  .hero-title { font-size: clamp(0.9rem, 2.5vw, 1.1rem); }
 
   .about-content {
     text-align: center;
@@ -982,9 +1022,32 @@ footer:hover {
     max-width: 60px;
     font-size: 1.2rem;
   }
+  
+  .skill-item {
+    padding: 1rem;
+  }
+  
+  .event-card {
+    width: 250px;
+  }
+  
+  .activity-group {
+    padding: 1.2rem;
+  }
+  
+  .course-group {
+    padding: 1.2rem;
+  }
 }
 
 @media (max-width: 480px) {
+  .section { padding: 3rem 0; }
+  
+  .section-title {
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    margin-bottom: 2rem;
+  }
+  
   .contact-grid {
     display: flex;
     flex-wrap: nowrap;
@@ -997,5 +1060,31 @@ footer:hover {
   
   .contact-icon-box {
     max-width: 50px;
+    font-size: 1rem;
+  }
+  
+  .hero-name {
+    font-size: clamp(1.6rem, 5vw, 2rem);
+  }
+  
+  .nav-sections {
+    gap: 0.5rem;
+  }
+  
+  .nav-section-link {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+  }
+  
+  .skill-item {
+    padding: 0.9rem;
+  }
+  
+  .skills-grid {
+    gap: 1rem;
+  }
+  
+  .event-card {
+    width: 220px;
   }
 }

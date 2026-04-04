@@ -55,7 +55,7 @@ window.addEventListener('scroll', () => {
  } else {
  navbar.classList.remove('show');
  }
-});
+}, { passive: true });
 
 // ========== SECTION ANIMATIONS ==========
 const sections = document.querySelectorAll('.section');
@@ -159,23 +159,28 @@ if (sliderContainer) {
 
 // ========== MAGNETIC EFFECT FOR CONTACT ICONS ==========
 const contactCards = document.querySelectorAll('.contact-card');
+let lastMagneticUpdate = 0;
 
 contactCards.forEach(card => {
     const icon = card.querySelector('.contact-icon-box');
     
     card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        
-        const distance = Math.sqrt(x * x + y * y);
-        const maxDistance = 50;
-        
-        if (distance < maxDistance) {
-            const strength = (1 - distance / maxDistance) * 15;
-            icon.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px) scale(1.1)`;
+        const now = Date.now();
+        if (now - lastMagneticUpdate >= 16) { // ~60fps
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            const distance = Math.sqrt(x * x + y * y);
+            const maxDistance = 50;
+            
+            if (distance < maxDistance) {
+                const strength = (1 - distance / maxDistance) * 15;
+                icon.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px) scale(1.1)`;
+            }
+            lastMagneticUpdate = now;
         }
-    });
+    }, { passive: true });
     
     card.addEventListener('mouseleave', () => {
         icon.style.transform = '';
@@ -201,19 +206,24 @@ function updateScrollProgress() {
     document.documentElement.style.setProperty('--scroll-percent', scrollPercent + '%');
 }
 
-window.addEventListener('scroll', updateScrollProgress);
+window.addEventListener('scroll', updateScrollProgress, { passive: true });
 
 // ========== PARALLAX EFFECT FOR HERO IMAGE ==========
 const heroImage = document.querySelector('.hero-image');
+let lastParallaxUpdate = 0;
 
 window.addEventListener('scroll', () => {
-    if (window.scrollY < window.innerHeight) {
-        const offset = window.scrollY * 0.5;
-        if (heroImage) {
-            heroImage.style.transform = `translateY(${offset}px)`;
+    const now = Date.now();
+    if (now - lastParallaxUpdate >= 16) { // ~60fps
+        if (window.scrollY < window.innerHeight) {
+            const offset = window.scrollY * 0.5;
+            if (heroImage) {
+                heroImage.style.transform = `translateY(${offset}px)`;
+            }
         }
+        lastParallaxUpdate = now;
     }
-});
+}, { passive: true });
 
 // ========== ENHANCED SECTION TITLE ANIMATION ==========
 const sectionTitles = document.querySelectorAll('.section-title');
@@ -222,6 +232,9 @@ const titleObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.style.animation = 'titleGlow 2s ease-in-out infinite';
+            entry.target.style.willChange = 'filter';
+        } else {
+            entry.target.style.willChange = 'auto';
         }
     });
 }, { threshold: 0.5 });
@@ -235,7 +248,16 @@ const skillItems = document.querySelectorAll('.skill-item');
 
 skillItems.forEach((item, index) => {
     item.style.setProperty('--stagger-delay', `${index * 0.1}s`);
+    // Preload animation for better performance
+    item.style.willChange = 'transform, opacity';
 });
+
+// Clean up will-change after animations
+setTimeout(() => {
+    skillItems.forEach(item => {
+        item.style.willChange = 'auto';
+    });
+}, 2000);
 
 // ========== SMOOTH HOVER EFFECT FOR CARDS ==========
 const allCards = document.querySelectorAll('.skill-item, .event-card, .course-group, .activity-group');
@@ -243,20 +265,31 @@ const allCards = document.querySelectorAll('.skill-item, .event-card, .course-gr
 allCards.forEach(card => {
     card.addEventListener('mouseenter', function() {
         this.style.transition = 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+        this.style.willChange = 'transform, box-shadow';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        this.style.willChange = 'auto';
     });
 });
 
 // ========== CURSOR TRAIL EFFECT ==========
+let lastMouseMove = 0;
+const mouseMoveThrottle = 50; // milliseconds
+
 document.addEventListener('mousemove', (e) => {
-    // Optional: Add cursor trail particles for extra delight
-    // This is a lightweight version that doesn't impact performance
-    const x = e.clientX;
-    const y = e.clientY;
-    
-    // Update cursor position for potential use in other effects
-    document.documentElement.style.setProperty('--mouse-x', x + 'px');
-    document.documentElement.style.setProperty('--mouse-y', y + 'px');
-});
+    const now = Date.now();
+    if (now - lastMouseMove >= mouseMoveThrottle) {
+        const x = e.clientX;
+        const y = e.clientY;
+        
+        // Update cursor position for potential use in other effects
+        document.documentElement.style.setProperty('--mouse-x', x + 'px');
+        document.documentElement.style.setProperty('--mouse-y', y + 'px');
+        
+        lastMouseMove = now;
+    }
+}, { passive: true });
 
 // ========== PERFORMANCE OPTIMIZATION ==========
 // Debounce scroll events for better performance
@@ -267,3 +300,38 @@ window.addEventListener('scroll', () => {
         // Perform heavy operations here if needed
     }, 100);
 }, { passive: true });
+
+// ========== LAZY LOADING IMAGES ==========
+if ('IntersectionObserver' in window) {
+    const images = document.querySelectorAll('img');
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src || img.src;
+                img.classList.add('loaded');
+                observer.unobserve(img);
+            }
+        });
+    });
+    images.forEach(img => imageObserver.observe(img));
+}
+
+// ========== WILL-CHANGE OPTIMIZATION ==========
+// Remove will-change after animation completes to save memory
+const animatedElements = document.querySelectorAll('.skill-item, .event-card, .contact-icon-box');
+animatedElements.forEach(el => {
+    el.addEventListener('mouseenter', function() {
+        this.style.willChange = 'transform';
+    });
+    el.addEventListener('mouseleave', function() {
+        this.style.willChange = 'auto';
+    });
+});
+
+// ========== REDUCE ANIMATION FOR USERS WHO PREFER IT ==========
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (prefersReducedMotion) {
+    document.documentElement.style.setProperty('--transition-smooth', 'all 0.01ms ease');
+    document.documentElement.style.setProperty('--transition-slow', 'all 0.01ms ease');
+}
