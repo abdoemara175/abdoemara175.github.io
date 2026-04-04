@@ -521,7 +521,7 @@ footer {
 
   .nav-sections {
     width: 100%;
-    justify-content: flex-start;
+    justify-content: center; /* Center the nav items */
     padding: 8px 0;
     overflow-x: auto;
     scrollbar-width: none;
@@ -533,5 +533,66 @@ footer {
     padding: 4px 10px;
     background: rgba(255, 255, 255, 0.03);
     border-radius: 12px;
+    white-space: nowrap; /* Prevent nav links from breaking */
+  }
+
+  /* Hero adjustments for mobile */
+  .hero-name {
+    font-size: 1.8rem; /* Smaller font for name to fit on one line */
+    white-space: nowrap; /* Keep name on one line */
+  }
+
+  .hero-title {
+    font-size: 1.1rem;
+  }
+
+  /* Section adjustments for mobile */
+  .section {
+    padding: 3rem 0; /* Reduced padding for mobile */
+  }
+
+  .section-title {
+    font-size: 1.5rem; /* Smaller section titles */
+    white-space: nowrap; /* Keep section titles on one line */
+    margin-bottom: 2rem;
+  }
+
+  /* About Me adjustments */
+  .about-content {
+    width: 95%; /* Take more width */
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  .about-content p {
+    font-size: 1rem;
+    text-align: justify; /* Better look for text */
+    margin-bottom: 1.2rem;
+  }
+
+  /* Contact icons alignment */
+  .contact-grid {
+    flex-direction: row; /* Horizontal icons */
+    flex-wrap: nowrap; /* No wrapping */
+    justify-content: space-between;
+    gap: 0.5rem;
+    width: 100%;
+    overflow-x: auto; /* Allow scroll if many icons */
+    padding-bottom: 10px;
+  }
+
+  .contact-card {
+    flex: 1;
+    min-width: 60px;
+  }
+
+  .contact-icon-box {
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+  }
+
+  .contact-card span {
+    display: none; /* Hide text on mobile to keep icons on one line */
   }
 }
