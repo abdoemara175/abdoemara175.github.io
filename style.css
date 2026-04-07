@@ -258,6 +258,10 @@ body {
   font-size: 1.3rem;
   font-weight: 400;
   color: var(--text-gray);
+  min-height: 1.5em; /* Set a fixed minimum height to prevent shifting */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ========== SKILLS SECTION ========== */
@@ -591,6 +595,10 @@ footer {
 
   .hero-title {
     font-size: 1.1rem;
+    min-height: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   /* Section adjustments for mobile */
