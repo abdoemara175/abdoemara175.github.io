@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>معاينة الألوان المحسنة - Abdelrahman Emara Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+      color: white;
+      border-radius: 10px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.8;
+    }
+
+    .comparison-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .preview-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .preview-header {
+      padding: 1.5rem;
+      text-align: center;
+      border-bottom: 3px solid #ddd;
+    }
+
+    .preview-header h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .preview-header p {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Current Colors Preview */
+    .current-preview {
+      background: #050505;
+      min-height: 400px;
+      padding: 2rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .current-preview::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: radial-gradient(circle at 1px 1px, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+    }
+
+    /* Enhanced Colors Preview */
+    .enhanced-preview {
+      background: #0a0a0a;
+      min-height: 400px;
+      padding: 2rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .enhanced-preview::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: radial-gradient(circle at 1px 1px, rgba(255, 200, 87, 0.04) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+    }
+
+    .preview-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .preview-element {
+      margin-bottom: 1.5rem;
+    }
+
+    .preview-element h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .preview-element p {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Current Colors */
+    .current-preview .title {
+      color: #FFD700;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .current-preview .text-gray {
+      color: #a0a0a0;
+    }
+
+    .current-preview .button {
+      background: #FFD700;
+      color: #000;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+
+    .current-preview .button:hover {
+      background: #ffed4e;
+      transform: translateY(-2px);
+    }
+
+    .current-preview .card {
+      background: rgba(26, 26, 26, 0.6);
+      border: 1px solid rgba(255, 215, 0, 0.1);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 0.5rem;
+    }
+
+    /* Enhanced Colors */
+    .enhanced-preview .title {
+      background: linear-gradient(135deg, #FFC857 0%, #FFB347 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .enhanced-preview .text-gray {
+      color: #b8b8b8;
+    }
+
+    .enhanced-preview .button {
+      background: linear-gradient(135deg, #FFC857 0%, #FFB347 100%);
+      color: #0a0a0a;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-block;
+      margin-top: 0.5rem;
+      box-shadow: 0 4px 15px rgba(255, 200, 87, 0.2);
+    }
+
+    .enhanced-preview .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 200, 87, 0.35);
+    }
+
+    .enhanced-preview .card {
+      background: rgba(30, 30, 30, 0.7);
+      border: 1px solid rgba(255, 200, 87, 0.15);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .enhanced-preview .card:hover {
+      border-color: rgba(255, 200, 87, 0.3);
+      background: rgba(35, 35, 35, 0.8);
+      box-shadow: 0 4px 15px rgba(255, 200, 87, 0.1);
+    }
+
+    /* Color Palette Section */
+    .color-palette {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin-bottom: 3rem;
+    }
+
+    .color-palette h2 {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .color-item {
+      text-align: center;
+    }
+
+    .color-box {
+      width: 100%;
+      height: 120px;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border: 1px solid #ddd;
+    }
+
+    .color-name {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .color-code {
+      font-family: monospace;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* Improvements List */
+    .improvements {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .improvements h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .improvements-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .improvement-item {
+      padding: 1.5rem;
+      background: #f9f9f9;
+      border-left: 4px solid #FFC857;
+      border-radius: 6px;
+    }
+
+    .improvement-item h3 {
+      color: #FFC857;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .improvement-item p {
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .comparison-section {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      .palette-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎨 معاينة الألوان المحسنة</h1>
+      <p>مقارنة بين الألوان الحالية والتحسينات المقترحة</p>
+    </header>
+
+    <!-- Comparison Section -->
+    <div class="comparison-section">
+      <!-- Current Colors -->
+      <div class="preview-card">
+        <div class="preview-header">
+          <h2>الألوان الحالية</h2>
+          <p>Current Color Scheme</p>
+        </div>
+        <div class="current-preview">
+          <div class="preview-content">
+            <div class="preview-element">
+              <h3 class="title">عنوان رئيسي</h3>
+              <p class="text-gray">هذا نص توضيحي بلون رمادي ناعم</p>
+            </div>
+
+            <div class="preview-element">
+              <button class="button">زر أساسي</button>
+            </div>
+
+            <div class="preview-element">
+              <div class="card">
+                <h4 style="color: #FFD700; margin-bottom: 0.5rem;">بطاقة عنصر</h4>
+                <p class="text-gray">محتوى البطاقة مع حد ذهبي ناعم</p>
+              </div>
+            </div>
+
+            <div class="preview-element" style="margin-top: 2rem;">
+              <h4 style="color: #FFD700; margin-bottom: 0.5rem;">الألوان المستخدمة:</h4>
+              <p class="text-gray">🟡 Primary: #FFD700</p>
+              <p class="text-gray">⚫ Background: #050505</p>
+              <p class="text-gray">⚪ Text: #ffffff</p>
+              <p class="text-gray">⚪ Gray: #a0a0a0</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enhanced Colors -->
+      <div class="preview-card">
+        <div class="preview-header">
+          <h2>الألوان المحسنة ✨</h2>
+          <p>Enhanced Color Scheme</p>
+        </div>
+        <div class="enhanced-preview">
+          <div class="preview-content">
+            <div class="preview-element">
+              <h3 class="title">عنوان رئيسي</h3>
+              <p class="text-gray">هذا نص توضيحي برمادي محسّن</p>
+            </div>
+
+            <div class="preview-element">
+              <button class="button">زر أساسي</button>
+            </div>
+
+            <div class="preview-element">
+              <div class="card">
+                <h4 style="background: linear-gradient(135deg, #FFC857 0%, #FFB347 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem;">بطاقة عنصر</h4>
+                <p class="text-gray">محتوى البطاقة مع حد محسّن</p>
+              </div>
+            </div>
+
+            <div class="preview-element" style="margin-top: 2rem;">
+              <h4 style="background: linear-gradient(135deg, #FFC857 0%, #FFB347 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem;">الألوان المستخدمة:</h4>
+              <p class="text-gray">🟡 Primary: #FFC857 → #FFB347</p>
+              <p class="text-gray">⚫ Background: #0a0a0a</p>
+              <p class="text-gray">⚪ Text: #ffffff</p>
+              <p class="text-gray">⚪ Gray: #b8b8b8</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color Palette -->
+    <div class="color-palette">
+      <h2>🎯 لوحة الألوان التفصيلية</h2>
+      <div class="palette-grid">
+        <div class="color-item">
+          <div class="color-box" style="background: #FFD700;"></div>
+          <div class="color-name">الأصفر الحالي</div>
+          <div class="color-code">#FFD700</div>
+        </div>
+
+        <div class="color-item">
+          <div class="color-box" style="background: linear-gradient(135deg, #FFC857 0%, #FFB347 100%);"></div>
+          <div class="color-name">التدرج المحسّن</div>
+          <div class="color-code">#FFC857 → #FFB347</div>
+        </div>
+
+        <div class="color-item">
+          <div class="color-box" style="background: #050505; border: 2px solid #ddd;"></div>
+          <div class="color-name">الخلفية الحالية</div>
+          <div class="color-code">#050505</div>
+        </div>
+
+        <div class="color-item">
+          <div class="color-box" style="background: #0a0a0a; border: 2px solid #ddd;"></div>
+          <div class="color-name">الخلفية المحسّنة</div>
+          <div class="color-code">#0a0a0a</div>
+        </div>
+
+        <div class="color-item">
+          <div class="color-box" style="background: #a0a0a0;"></div>
+          <div class="color-name">الرمادي الحالي</div>
+          <div class="color-code">#a0a0a0</div>
+        </div>
+
+        <div class="color-item">
+          <div class="color-box" style="background: #b8b8b8;"></div>
+          <div class="color-name">الرمادي المحسّن</div>
+          <div class="color-code">#b8b8b8</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Improvements List -->
+    <div class="improvements">
+      <h2>✨ التحسينات الرئيسية</h2>
+      <div class="improvements-list">
+        <div class="improvement-item">
+          <h3>🎨 تدرج ذهبي احترافي</h3>
+          <p>استبدال اللون الأصفر الموحد بتدرج سلس من #FFC857 إلى #FFB347 لإضافة عمق واحترافية أكثر</p>
+        </div>
+
+        <div class="improvement-item">
+          <h3>🌙 خلفية محسّنة</h3>
+          <p>تغيير الخلفية من #050505 إلى #0a0a0a لتقليل حدة السواد المطلق وتحسين راحة العين</p>
+        </div>
+
+        <div class="improvement-item">
+          <h3>📝 نصوص أوضح</h3>
+          <p>ترقية اللون الرمادي من #a0a0a0 إلى #b8b8b8 لتحسين التباين وسهولة القراءة</p>
+        </div>
+
+        <div class="improvement-item">
+          <h3>💫 تأثيرات محسّنة</h3>
+          <p>إضافة ظلال ذهبية ناعمة عند التفاعل مع العناصر لتحسين تجربة المستخدم</p>
+        </div>
+
+        <div class="improvement-item">
+          <h3>🎯 تناسق أفضل</h3>
+          <p>توحيد استخدام التدرجات والشفافيات لإنشاء مظهر بصري متناسق وحديث</p>
+        </div>
+
+        <div class="improvement-item">
+          <h3>✅ توافقية محسّنة</h3>
+          <p>الألوان الجديدة توفر تباين أفضل وتتوافق مع معايير إمكانية الوصول (WCAG)</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: white; border-radius: 12px;">
+      <h3 style="color: #FFC857; margin-bottom: 1rem;">هل تعجبك هذه التحسينات؟</h3>
+      <p style="color: #666; margin-bottom: 1rem;">يمكنك تأكيد التطبيق أو طلب تعديلات أخرى</p>
+      <p style="color: #999; font-size: 0.9rem;">تم إنشاء هذه المعاينة لمساعدتك في اتخاذ القرار قبل تطبيق التغييرات على الموقع</p>
+    </div>
+  </div>
+</body>
+</html>
