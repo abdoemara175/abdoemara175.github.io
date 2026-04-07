@@ -909,8 +909,9 @@ footer {
   gap: 0.8rem;
   flex-shrink: 0;
   position: absolute;
-  top: 20px;
+  top: 0;
   right: 20px;
+  transform: translateY(-50%);
 }
 
 .education-info {
