@@ -914,7 +914,7 @@ footer {
 }
 
 .education-university {
-  color: var(--text-white);
+  color: var(--primary-yellow);
   font-size: 1.4rem;
   font-weight: 700;
   margin-bottom: 0.3rem;
@@ -922,7 +922,7 @@ footer {
 }
 
 .education-faculty {
-  color: var(--primary-yellow);
+  color: var(--text-white);
   font-size: 0.9rem;
   font-weight: 600;
   margin: 0 0 0.5rem 0;
@@ -932,7 +932,7 @@ footer {
 
 .education-date {
   background: rgba(255, 215, 0, 0.12);
-  color: var(--primary-yellow);
+  color: var(--text-white);
   padding: 0.5rem 1rem;
   border-radius: 25px;
   font-size: 0.8rem;
