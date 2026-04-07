@@ -914,7 +914,7 @@ footer {
 }
 
 .education-university {
-  color: var(--primary-yellow);
+  color: var(--text-white);
   font-size: 1.4rem;
   font-weight: 700;
   margin-bottom: 0.3rem;
@@ -922,9 +922,11 @@ footer {
 }
 
 .education-faculty {
-  color: var(--text-gray);
-  font-size: 0.95rem;
+  color: var(--text-white);
+  font-size: 1.05rem;
+  font-weight: 500;
   margin: 0;
+  opacity: 0.9;
 }
 
 .education-date {
@@ -976,7 +978,7 @@ footer {
   }
   
   .education-meta {
-    align-self: flex-start;
+    align-self: flex-end;
   }
 }
 
