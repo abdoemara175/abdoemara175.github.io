@@ -64,10 +64,14 @@ const navbar = document.getElementById('navbar');
 const heroSection = document.getElementById('hero');
 
 window.addEventListener('scroll', () => {
- if (window.scrollY > 100) {
- navbar.classList.add('show');
+ // Get the height of the hero section
+ const heroHeight = heroSection ? heroSection.offsetHeight : 100;
+ 
+ // Show navbar only after scrolling past the hero section
+ if (window.scrollY > heroHeight - 100) {
+   navbar.classList.add('show');
  } else {
- navbar.classList.remove('show');
+   navbar.classList.remove('show');
  }
 });
 
