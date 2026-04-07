@@ -651,7 +651,9 @@ footer {
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--secondary-black);
+  background: rgba(0, 0, 0, 0.4); /* Transparent black overlay */
+  backdrop-filter: blur(12px); /* Glassmorphism blur effect */
+  -webkit-backdrop-filter: blur(12px); /* Support for Safari */
   display: flex;
   flex-direction: column;
   justify-content: center;
