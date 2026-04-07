@@ -922,9 +922,12 @@ footer {
 }
 
 .education-faculty {
-  color: var(--text-gray);
-  font-size: 0.95rem;
+  color: var(--primary-yellow);
+  font-size: 0.9rem;
+  font-weight: 600;
   margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .education-date {
@@ -960,12 +963,9 @@ footer {
 }
 
 .education-degree {
-  color: var(--primary-yellow);
-  font-size: 0.9rem;
-  font-weight: 600;
+  color: var(--text-gray);
+  font-size: 0.95rem;
   margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
 @media (max-width: 768px) {
