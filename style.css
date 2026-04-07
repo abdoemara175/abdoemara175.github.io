@@ -1,7 +1,7 @@
 /* ========== GLOBAL STYLES ========== */
 :root {
   --primary-black: #000000;
-  --secondary-black: #121212; /* Slightly deeper black */
+  --secondary-black: #050505; /* Deep, pure black for high contrast */
   --primary-yellow: #FFD700;
   --accent-yellow: #FFD700;
   --text-white: #ffffff;
