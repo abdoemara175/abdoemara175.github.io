@@ -915,17 +915,16 @@ footer {
 
 .education-university {
   color: var(--text-white);
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 0.2rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.3px;
 }
 
 .education-faculty {
-  color: var(--text-white);
-  font-size: 1.05rem;
-  font-weight: 500;
-  margin: 0;
-  opacity: 0.9;
+  color: var(--text-gray);
+  font-size: 0.95rem;
+  margin: 0 0 0.5rem 0;
 }
 
 .education-date {
@@ -962,11 +961,11 @@ footer {
 
 .education-degree {
   color: var(--primary-yellow);
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 @media (max-width: 768px) {
