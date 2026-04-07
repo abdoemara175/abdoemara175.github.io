@@ -875,3 +875,8 @@ footer {
     padding: 0.3rem 0.7rem;
   }
 }
+
+/* Flip the phone icon horizontally */
+.contact-icon-box.phone i {
+  transform: scaleX(-1);
+}
